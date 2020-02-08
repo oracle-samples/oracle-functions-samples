@@ -10,9 +10,9 @@ This repository provides examples demonstrating how to use Oracle Functions.
 ## How To
 | Description                                          | Python | Java | 
 |------------------------------------------------------|:------:|:----:|
-| Hello World                                          |[sample](https://orahub.oraclecorp.com/oracle-functions-samples/helloworld/tree/master/python)|[sample](https://orahub.oraclecorp.com/oracle-functions-samples/helloworld/tree/master/java)|
-| List OCI Compute instances                           |[sample](https://orahub.oraclecorp.com/oracle-functions-samples/oci-list-instances-python)|[sample](https://orahub.oraclecorp.com/oracle-functions-samples/oci-list-instances-java)|
-| Control OCI Compute instances (start/stop/status)    |[sample](https://orahub.oraclecorp.com/oracle-functions-samples/oci-compute-control-python)|
+| Hello World                                          |[sample](./helloworld)|[sample](./helloworld)|
+| List OCI Compute instances                           |[sample](./oci-list-instances-python)|[sample](./oci-list-instances-java)|
+| Control OCI Compute instances (start/stop/status)    |[sample](./oci-compute-control-python)|
 
 
 ## Documentation
