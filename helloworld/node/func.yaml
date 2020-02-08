@@ -1,5 +1,0 @@
-schema_version: 20180708
-name: node
-version: 0.0.1
-runtime: node
-entrypoint: node func.js
