@@ -5,7 +5,7 @@ API calls to OCI services using the [OCI Java SDK](https://docs.cloud.oracle.com
 It returns a list of all instances within the compartment that calls the function.
 
 The function calls the following OCI Java SDK classes:
-* [InstancePrincipalsAuthenticationDetailsProvider](https://docs.cloud.oracle.com/iaas/tools/java/latest/com/oracle/bmc/auth/InstancePrincipalsAuthenticationDetailsProvider.html) to authenticate
+* [ResourcePrincipalAuthenticationDetailsProvider](https://docs.cloud.oracle.com/en-us/iaas/tools/java/1.12.6/com/oracle/bmc/auth/ResourcePrincipalAuthenticationDetailsProvider.html) to authenticate
 * [ComputeClient](https://docs.cloud.oracle.com/iaas/tools/java/latest/com/oracle/bmc/core/ComputeClient.html) to interact with Compute
 
 As you make your way through this tutorial, look out for this icon ![user input icon](../images/userinput.png).
@@ -123,4 +123,5 @@ e.g.
 ```
 echo -n 'ocid1.compartment.oc1...2jn3htfoobar' | fn invoke myapp list-instances
 ```
-Upon success, you should see the list of instances in your compartment appear on your terminal.
+Upon success, you should see a map of instances in your compartment appear on your terminal.
+Key is the OCID of the instance and value is a String representation of the Instance object.

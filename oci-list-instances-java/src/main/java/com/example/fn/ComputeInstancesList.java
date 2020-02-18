@@ -9,12 +9,15 @@ package com.example.fn;
 
 import com.oracle.bmc.auth.ResourcePrincipalAuthenticationDetailsProvider;
 import com.oracle.bmc.core.ComputeClient;
+import com.oracle.bmc.core.model.Instance;
 import com.oracle.bmc.core.requests.ListInstancesRequest;
 import com.oracle.bmc.core.responses.ListInstancesResponse;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
 
 public class ComputeInstancesList {
 
@@ -36,32 +39,41 @@ public class ComputeInstancesList {
 
         } catch (Throwable ex) {
             System.err.println("Failed to instantiate ComputeClient - " + ex.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public List<String> handle(String compID) {
+    public Map<String, String> handle(String compID) {
+
+        Map<String, String> names = Collections.emptyMap();
 
         if (computeClient == null) {
             System.err.println("There was a problem creating the ComputeClient object. Please check logs...");
-            return Collections.emptyList();
+            return names;
         }
 
-        List<String> names = null;
         try {
             System.err.println("Searching for compute instances in compartment " + compID);
 
             ListInstancesRequest request = ListInstancesRequest.builder().compartmentId(compID).build();
+            System.err.println("ListInstancesRequest " + request);
 
             ListInstancesResponse instances = computeClient.listInstances(request);
+            System.err.println("ListInstancesResponse " + instances);
 
-            names = instances.getItems().stream()
-                    .map((instance) -> instance.getDisplayName())
-                    .collect(Collectors.toList());
+            List<Instance> instanceList = instances.getItems();
+            System.err.println("No. of compute instances found in compartment " + instanceList.size());
 
-            System.err.println("No. of compute instances found in compartment " + names.size());
+             names = instanceList.stream()
+//                     .collect(Collectors.toMap((instance) -> instance.getId(), (instance) -> instance.toString()));
+                     .collect(Collectors.toMap(Instance::getId, Instance::toString));
+
+            System.err.println("Compute instances " + names);
 
         } catch (Throwable e) {
             System.err.println("ERROR searching for compute instances in compartment " + compID);
+            System.err.println("e.getMessage() " + e.getMessage());
+            e.printStackTrace();
         }
 
         return names;
