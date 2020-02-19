@@ -25,4 +25,4 @@ See [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## License
 
-See [LICENSE](./LICENSE)
+See [LICENSE](./LICENSE.txt)
