@@ -39,7 +39,7 @@ public class ComputeInstancesList {
 
         } catch (Throwable ex) {
             System.err.println("Failed to instantiate ComputeClient - " + ex.getMessage());
-            e.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
