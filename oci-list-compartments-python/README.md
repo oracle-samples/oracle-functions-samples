@@ -2,7 +2,7 @@
 
 This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html).
-It returns a list of all compartments within the tenancy.
+It returns a list of all compartments within the tenancy. 
 
 The function calls the following OCI Python SDK classes:
 * [Resource Principals Signer](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/signing.html#resource-principals-signer) to authenticate
