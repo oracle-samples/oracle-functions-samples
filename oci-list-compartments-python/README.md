@@ -1,4 +1,4 @@
-# Function that returns the list of compartments in a user's tenancy.
+# Function that returns the list of compartments in a user's tenancy
 
 This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html).
@@ -12,7 +12,7 @@ As you make your way through this tutorial, look out for this icon ![user input 
 Whenever you see it, it's time for you to perform an action.
 
 
-## Pre-requisites
+## Prerequisites
 1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
 
 2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
@@ -86,7 +86,7 @@ Review the following files in the current folder:
 - [func.yaml](./func.yaml) which contains metadata about your function and declares properties
 - [func.py](./func.py) which is your actual Python function
 
-The name of your function *oci-list-compartments* is specified in [func.yaml](./func.yaml).
+The name of your function *oci-list-compartments-python* is specified in [func.yaml](./func.yaml).
 
 
 ## Deploy the function
@@ -107,6 +107,6 @@ fn invoke <your app name> <your function name>
 ```
 e.g.
 ```
-fn invoke myapp oci-list-compartments
+fn invoke myapp oci-list-compartments-python
 ```
 Upon success, you should see all of the compartments in your tenancy appear in your terminal.
