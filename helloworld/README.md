@@ -133,6 +133,6 @@ files by running the following command from your terminal:
 fn init --runtime <runtime-language> <func-name>
 ```
 
-where <runtime-language> is one of the supported runtime languages (currently java, python, node, go and ruby are 
+where `<runtime-language>` is one of the supported runtime languages (currently java, python, node, go and ruby are 
 supported).
 
