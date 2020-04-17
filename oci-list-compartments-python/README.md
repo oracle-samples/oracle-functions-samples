@@ -15,7 +15,7 @@ Whenever you see it, it's time for you to perform an action.
 ## Prerequisites
 
 Before you deploy this sample function, make sure you have run steps A, B 
-and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
+and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
 * A - Set up your tenancy
 * B - Create application
 * C - Set up your Cloud Shell dev environment
@@ -58,7 +58,7 @@ The name of your function *oci-list-compartments-python* is specified in [func.y
 
 ## Deploy the function
 
-In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+In Cloud Shell, run the `fn deploy` command to build the function and its dependencies as a Docker image, 
 push the image to the specified Docker registry, and deploy the function to Oracle Functions 
 in the application created earlier:
 
