@@ -1,7 +1,7 @@
 #
 # imagedims-python version 1.0.
 #
-# Copyright (c) 2020 Oracle, Inc.  All rights reserved.
+# Copyright (c) 2020 Oracle, Inc.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 #
 

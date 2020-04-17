@@ -33,7 +33,7 @@ Before you deploy this sample function, make sure you have run steps A, B and C 
 * C - Set up your Cloud Shell dev environment
 
 
-## Review and customize your function
+## Review and customize the function
 Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * the function dependencies, [requirements.txt](./requirements.txt)
@@ -62,7 +62,7 @@ FROM fnproject/python:3.6-dev as build-stage
 WORKDIR /function
 ADD requirements.txt /function/
 RUN pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.txt &&\
-		rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
+	rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
 ADD . /function/
 RUN rm -fr /function/.pip_cache
 
@@ -94,23 +94,22 @@ so we need to add the *RUN* command after the *FROM fnproject/python:3.6* line.
 
 ## Deploy the function
 In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
-push the image to the specified Docker registry, and deploy the function to Oracle Functions 
-in your application that you created earlier:
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
 
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your-app-name>
+fn -v deploy --app <app-name>
 ```
 
 
-## Invoke the Function
+## Invoke the function
 With the function deployed let's invoke it to make sure it's working as
 expected. You'll need a jpeg or png file so either find one on your machine
 or download one.  The *3x3.jpg* image in this repo has a height and width of 3 pixels.
 
 ![](images/userinput.png)
 ```
- cat 3x3.jpg | fn invoke <your-app-name> imagedims-python
+ cat 3x3.jpg | fn invoke <app-name> imagedims-python
 ```
 
 You should see the following output:
