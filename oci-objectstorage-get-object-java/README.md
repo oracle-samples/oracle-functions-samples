@@ -13,7 +13,6 @@ Whenever you see it, it's time for you to perform an action.
 
 
 ## Prerequisites
-![user input icon](./images/userinput.png)
 
 1. Before you deploy this sample function, make sure you have run steps A, B 
 and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
@@ -28,9 +27,8 @@ is shown there.
 
 
 ## List Applications 
-![user input icon](../images/userinput.png)
 
-Assuming your have successfully completed the prerequisites, you should see your 
+Assuming you have successfully completed the prerequisites, you should see your 
 application in the list of applications.
 
 ```
@@ -39,32 +37,27 @@ fn ls apps
 
 
 ## Create or Update your Dynamic Group
-In order to use and retrieve information about other OCI Services, your function
-must be part of a dynamic group. For information on how to create a dynamic group,
-click [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
 
-![user input icon](../images/userinput.png)
+In order to use other OCI Services, your function must be part of a dynamic 
+group. For information on how to create a dynamic group, refer to the 
+[documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
 
-When specifying the *Matching Rules*, consider the following example:
-* If you want all functions in a compartment to be able to access a resource,
-enter a rule similar to the following that adds all functions in the compartment
-with the specified compartment OCID to the dynamic group:
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
+
 ```
-ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaaaa23______smwa'}
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
 ```
 
 
-## Create or Update Policies
-Now that your dynamic group is created, create a new policy that allows the
-dynamic group to read any resources you are interested in receiving
-information about, in this case we will grant access to `object-family` in
+## Create or Update IAM Policies
+Create a new policy that allows the dynamic group to read `object-family` in
 the functions related compartment.
 
 ![user input icon](../images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <your dynamic group name> to read object-family in compartment <your compartment name>
+Allow dynamic-group <dynamic-group-name> to read object-family in compartment <compartment-name>
 ```
 e.g.
 ```
@@ -83,50 +76,51 @@ The name of your function *oci-objectstorage-get-object-java* is specified in [f
 
 
 ## Deploy the function
+
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to the specified Docker registry, and deploy the function to Oracle Functions 
+in the application created earlier:
+
 ![user input icon](../images/userinput.png)
 
-From the current folder, run the following command:
 ```
-fn -v deploy --app <your app name>
+fn -v deploy --app <app-name>
 ```
 e.g.
 ```
-fn -v deploy --app object-crud
+fn -v deploy --app myapp
 ```
 
 
 ## Set function configuration values
+
 The function requires the config value *NAMESPACE* to be set.
 
 ![user input icon](../images/userinput.png)
 
-Use the *fn* CLI to set the config value:
+Use the *fn* CLI to set the config value at the application level (if multiple functions need the same config value):
+
 ```
-fn config function <your app name> <function name> NAMESPACE <your namespace>
+fn config app <app-name> NAMESPACE <object-storage-namespace>
 ```
 e.g.
 ```
-fn config function object-crud get-object NAMESPACE mytenancy
-```
-Note that the config value can also be set at the application level:
-```
-fn config app <your app name> NAMESPACE <your namespace>
-```
-e.g.
-```
-fn config app object-crud NAMESPACE mytenancy
+fn config app myapp NAMESPACE mytenancy
 ```
 
+Note that the config value can also be set at the function level.
 
-## Invoke the function
+
+## Test
+
 Use the *fn* CLI to invoke your function with your own object name, bucket name and app name:
 
 ![user input icon](../images/userinput.png)
 ```
-echo -n '{"name": "<object_name>", "bucketName":"<bucket_name>"}' | fn invoke <app_name> <function_name>
+echo -n '{"name": "<object-name>", "bucketName":"<bucket-name>"}' | fn invoke <app-name> <function-name>
 ```
 e.g.
 ```
-echo -n '{"name": "file1.txt", "bucketName":"mybucket"}' | fn invoke object-crud oci-objectstorage-get-object-java
+echo -n '{"name": "file1.txt", "bucketName":"mybucket"}' | fn invoke myapp oci-objectstorage-get-object-java
 ```
-Upon success, you should see the content of the object appear in your terminal.
+You should see the contents of the object appear in the terminal.
