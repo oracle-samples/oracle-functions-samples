@@ -70,7 +70,7 @@ For more information on how to create policies, go [here](https://docs.cloud.ora
 Review the following files in the current folder:
 - [pom.xml](./pom.xml) specifies all the dependencies for your function
 - [func.yaml](./func.yaml) that contains metadata about your function and declares properties
-- [src/main/java/com/example/fn/ObjectStorageGetObjects.java](./src/main/java/com/example/fn/ObjectStorageGetObjects.java) which contains the Java code
+- [src/main/java/com/example/fn/ObjectStorageGetObject.java](./src/main/java/com/example/fn/ObjectStorageGetObject.java) which contains the Java code
 
 The name of your function *oci-objectstorage-get-object-java* is specified in [func.yaml](./func.yaml).
 
