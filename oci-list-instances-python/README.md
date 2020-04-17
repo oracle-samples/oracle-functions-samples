@@ -1,4 +1,4 @@
-# Function that returns the list of instances in the calling Compartment.
+# Function that returns the list of instances in the calling Compartment
 
 This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html).
@@ -102,7 +102,7 @@ Review the following files in the current folder:
 - [func.yaml](./func.yaml) which contains metadata about your function and declares properties
 - [func.py](./func.py) which is your actual Python function
 
-The name of your function *oci-list-instances* is specified in [func.yaml](./func.yaml).
+The name of your function *oci-list-instances-python* is specified in [func.yaml](./func.yaml).
 
 
 ## Deploy the function
@@ -123,6 +123,6 @@ fn invoke <your app name> <your function name>
 ```
 e.g.
 ```
-fn invoke myapp oci-list-instances
+fn invoke myapp oci-list-instances-python
 ```
 Upon success, you should see the list of instances in your compartment on your terminal.
