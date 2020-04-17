@@ -13,30 +13,29 @@ As you make your way through this tutorial, look out for this icon ![user input 
 Whenever you see it, it's time for you to perform an action.
 
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
+```
+fn ls apps
+```
 
 
 ## Create or Update your Dynamic Group
-In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
+In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, refer to the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
 
-![user input icon](./images/userinput.png)
-
-When specifying the *Matching Rules*, consider the following examples:
-* Matching all functions in a compartment:
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
 ```
-ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaaaa23______smwa'}
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
 ```
-* Matching a specific function by its OCID:
-```
-resource.id = 'ocid1.fnfunc.oc1.iad.aaaaaaaaacq______dnya'
-```
-* Matching functions with a defined tag (free-form tags are not supported):
-```
-ALL {resource.type = 'fnfunc', tag.department.operations.value = '45'}
-```
+Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Running Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm) for other *Matching Rules* options.
 
 
 ## Create Object Storage buckets
@@ -49,22 +48,17 @@ Create the two buckets, for example "input-bucket" and "processed-bucket". Check
 ![create bucket](./images/create-bucket.png)
 
 
-## Create or Update Policies
+## Create or Update IAM Policies
 Create a new policy that allows the dynamic group to manage objects in your two buckets.
 
 ![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <your dynamic group name> to manage objects in compartment <your compartment name> where target.bucket.name=<bucket name>
+Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<input-bucket-name>
+Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<processed-bucket-name>
 ```
-e.g.
-```
-Allow dynamic-group dg-greg to manage objects in compartment greg-verstraeten where target.bucket.name='input-bucket'
-Allow dynamic-group dg-greg to manage objects in compartment greg-verstraeten where target.bucket.name='processed-bucket'
-```
-
-For more information on how to create policies, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
+For more information on how to create policies, check the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
 
 ## Create an Autonomous Data Warehouse
@@ -96,42 +90,27 @@ The *admin* schema is enabled for REST access by default, so you can test the fu
 
 From your terminal, create the collection 'regionsnumbers':
 ```bash
-export ORDS_BASE_URL=<your ADW ORDS URL>
+export ORDS_BASE_URL=<ADW-ORDS-URL>
 curl -X PUT -u 'ADMIN:<DB password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/regionsnumbers
 ```
 
 List collections:
 ```bash
-curl -u 'ADMIN:<DB password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/
+curl -u 'ADMIN:<DB-password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/
 ```
 
 Once data is inserted, query all documents in the collection 'regionsnumbers' with:
 ```bash
-curl -X POST -u 'ADMIN:<DB password>' -H "Content-Type: application/json" --data '{}' $ORDS_BASE_URL/admin/soda/latest/regionsnumbers?action=query
+curl -X POST -u 'ADMIN:<DB-password>' -H "Content-Type: application/json" --data '{}' $ORDS_BASE_URL/admin/soda/latest/regionsnumbers?action=query
 ```
 
 To empty the collection 'regionsnumbers':
 ```bash
-curl -X POST -u 'ADMIN:<DB password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/regionsnumbers?action=truncate 
+curl -X POST -u 'ADMIN:<DB-password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/regionsnumbers?action=truncate 
 ```
 
 
-## Create or select an Application to run your function
-You can use an application already created or create a new one as follow:
-
-![user input icon](./images/userinput.png)
-```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-Get the OCID of the subnet in your VCN you wish to use.
-
-e.g.
-```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
-```
-
-
-## Review and customize your function
+## Review and customize the function
 Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * its dependencies, [requirements.txt](./requirements.txt)
@@ -139,13 +118,12 @@ Review the following files in the current folder:
 
 
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
-```
-e.g.
-```
-fn -v deploy --app myapp
+fn -v deploy --app <app-name>
 ```
 
 
@@ -154,14 +132,14 @@ The function requires several configuration variables to be set.
 
 ![user input icon](../images/userinput.png)
 
-Use the *fn* CLI to set the config value:
+Use the *fn CLI* to set the config value:
 ```
-fn config function <your app name> <function name> ords-base-url <ORDS Base URL>
-fn config function <your app name> <function name> db-schema <DB schema>
-fn config function <your app name> <function name> db-user <DB user name>
-fn config function <your app name> <function name> dbpwd-cipher <DB encrypted password>
-fn config function <your app name> <function name> input-bucket <input bucket name>
-fn config function <your app name> <function name> processed-bucket <processed bucket name>
+fn config function <app-name> <function-name> ords-base-url <ORDS Base URL>
+fn config function <app-name> <function-name> db-schema <DB schema>
+fn config function <app-name> <function-name> db-user <DB user name>
+fn config function <app-name> <function-name> dbpwd-cipher <DB encrypted password>
+fn config function <app-name> <function-name> input-bucket <input bucket name>
+fn config function <app-name> <function-name> processed-bucket <processed bucket name>
 ```
 e.g.
 ```
@@ -174,10 +152,12 @@ fn config function myapp oci-adb-ords-runsql-python processed-bucket "processed-
 ```
 
 
-## Create a Cloud Event rule
+## Create an Event rule
+Let's configure a Cloud Event to trigger the function when files are dropped into your *input* bucket.
+
 ![user input icon](./images/userinput.png)
 
-Create a Cloud Event rule on the console navigating to Application Integration > Event Service. Click *Create Rule*.
+Go to the OCI console > Application Integration > Events Service. Click *Create Rule*.
 
 ![user input icon](./images/1-create_event_rule.png)
 
@@ -192,7 +172,7 @@ In the *Actions* section, set the *Action type* as "Functions", select your *Fun
 
 
 ## Test
-In order to test the workflow, proceed as follows:
+Finally, let's test the workflow.
 
 ![user input icon](./images/userinput.png)
 

@@ -1,0 +1,6 @@
+schema_version: 20180708
+name: oci-objectstorage-list-objects-python
+version: 0.0.4
+runtime: python
+entrypoint: /python/bin/fdk /function/func.py handler
+memory: 256

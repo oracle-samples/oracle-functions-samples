@@ -1,0 +1,7 @@
+schema_version: 20180708
+name: oci-adb-client-runsql-python
+version: 0.0.55
+runtime: docker
+entrypoint: /python/bin/fdk /function/func.py handler
+memory: 256
+timeout: 120
