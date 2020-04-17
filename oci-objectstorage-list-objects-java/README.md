@@ -11,12 +11,16 @@ The function calls the following OCI Java SDK classes:
 As you make your way through this tutorial, look out for this icon ![user input icon](../images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
+## Prerequisites
+![user input icon](./images/userinput.png)
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+1. Before you deploy this sample function, make sure you have run steps A, B 
+and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+    * A - Set up your tenancy
+    * B - Create application
+    * C - Set up your Cloud Shell dev environment
 
-3. Have your Oracle Object Storage Namespace available. This can be found by
+2. Have your Oracle Object Storage Namespace available. This can be found by
 logging into your [cloud account](https://console.us-ashburn-1.oraclecloud.com/),
 under your user profile, click on your Tenancy. Your Object Storage Namespace
 is shown there.
@@ -32,17 +36,17 @@ This folder includes files for both Java 11 and Java 8:
 
 Rename `func-jdkXX.yaml` to `func.yaml` and `pom-jdkXX.xml` to `pom.xml`
 
-## Context
-Switch to the correct context
 
+## List Applications 
 ![user input icon](../images/userinput.png)
-```
-fn use context <your context name>
-```
-Check using
+
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
+
 ```
 fn ls apps
 ```
+
 
 ## Create or Update your Dynamic Group
 In order to use and retrieve information about other OCI Services, your function
@@ -51,24 +55,12 @@ click [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingd
 
 ![user input icon](../images/userinput.png)
 
-When specifying the *Matching Rules*, consider the following examples:
+When specifying the *Matching Rules*, consider the following example:
 * If you want all functions in a compartment to be able to access a resource,
 enter a rule similar to the following that adds all functions in the compartment
 with the specified compartment OCID to the dynamic group:
 ```
 ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaaaa23______smwa'}
-```
-* If you want a specific function to be able to access a resource, enter a rule
-similar to the following that adds the function with the specified OCID to the
-dynamic group:
-```
-resource.id = 'ocid1.fnfunc.oc1.iad.aaaaaaaaacq______dnya'
-```
-* If you want all functions with a specific defined tag (free-form tags are
-not supported) to be able to access a resource, enter a rule similar to the
-following that adds all functions with the defined tag to the dynamic group :
-```
-ALL {resource.type = 'fnfunc', tag.department.operations.value = '45'}
 ```
 
 
@@ -91,30 +83,13 @@ Allow dynamic-group demo-func-dyn-group to inspect object-family in compartment 
 For more information on how to create policies, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
 
-## Create an Application to run the function
-You can use an application already created or create a new one as follows:
-
-![user input icon](../images/userinput.png)
-```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]
-```
-You can find the subnet-ocid by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in),
-navigating to Core Infrastructure > Networking > Virtual Cloud Networks. Make
-sure you are in the correct Region and Compartment, click on your VNC and
-select the subnet you wish to use.
-e.g.
-```
-fn create app object-crud --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
-```
-
-
 ## Review the function
 Review the following files in the current folder:
 - `pom.xml` specifies all the dependencies for your function
 - `func.yaml` that contains metadata about your function and declares properties
 - `src/main/java/com/example/fn/ObjectStorageListObjects.java` which contains the Java code
 
-The name of your function *oci-objectstorage-list-objects* is specified in `func.yaml`.
+The name of your function *oci-objectstorage-list-objects-java* is specified in `func.yaml`.
 
 ## Deploy the function
 ![user input icon](../images/userinput.png)
@@ -156,10 +131,10 @@ Use the *fn* CLI to invoke your function with your own bucket name and app name:
 
 ![user input icon](../images/userinput.png)
 ```
-echo -n '<bucket_name>' | fn invoke <app_name> oci-objectstorage-list-objects
+echo -n '<bucket_name>' | fn invoke <app_name> <function_name>
 ```
 e.g.
 ```
-echo -n 'mybucket' | fn invoke object-crud oci-objectstorage-list-objects
+echo -n 'mybucket' | fn invoke object-crud oci-objectstorage-list-objects-java
 ```
 Upon success, you should see either a list of objects on your terminal.

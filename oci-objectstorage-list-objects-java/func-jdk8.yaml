@@ -1,5 +1,5 @@
 schema_version: 20180708
-name: oci-objectstorage-list-objects
+name: oci-objectstorage-list-objects-java
 version: 0.0.1
 runtime: java8
 build_image: fnproject/fn-java-fdk-build:1.0.98

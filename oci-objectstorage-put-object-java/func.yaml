@@ -1,5 +1,5 @@
 schema_version: 20180708
-name: oci-objectstorage-put-object
+name: oci-objectstorage-put-object-java
 version: 0.0.1
 runtime: java
 build_image: fnproject/fn-java-fdk-build:jdk11-1.0.105
