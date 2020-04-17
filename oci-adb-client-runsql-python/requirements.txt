@@ -1,0 +1,3 @@
+fdk
+cx_oracle
+oci

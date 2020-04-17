@@ -42,49 +42,37 @@ Click `Create`.
 
 ## Writing the code of function
 
-The [Python folder](./python) contains the files to deploy the HelloWorld function in Python:
+The [Python folder](./python) contains the files to deploy the `hello-python` function in Python:
 * the code of the function, [func.py](./python/func.py)
 * its dependencies, [requirements.txt](./python/requirements.txt)
 * the function metadata, [func.yaml](./python/func.yaml)
 
-The [Java folder](./java) contains the files to deploy the HelloWorld function in Java:
+The [Java folder](./java) contains the files to deploy the `hello-java` function in Java:
 * the code of the function, [src/main/java/com/example/fn/HelloFunction.java](./java/src/main/java/com/example/fn/HelloFunction.java)
 * its dependencies, [pom.xml](./java/pom.xml)
 * the function metadata, [func.yaml](./java/func.yaml)
 
-![user input icon](./images/userinput.png)
-
-You can also generation your own HelloWorld function files by running the following command from your terminal:
-
+Note: In this example we will use the provided files. However, you can also generate boilerplat HelloWorld function 
+files by running the following command from your terminal:
+      
 ```
-fn init --runtime <runtime-language> helloworld
-```
-
-where <runtime-language> is one of the supported runtime languages (currently go, java, node, and python are supported).
-
-For example:
-```
-fn init --runtime python helloworld
+fn init --runtime <runtime-language> <func-name>
 ```
 
-A directory called *helloworld* is created containing the necessary files to deploy the HelloWorld function.
+where <runtime-language> is one of the supported runtime languages (currently java, python, node, go and ruby are 
+supported).
 
 
 ## Deploy the function
 
 ![user input icon](./images/userinput.png)
 
-Change directory to the *helloworld* directory created in the previous step:
-
-```
-cd helloworld
-```
-
-If you did not generate your own function and you are deploying what is provided in this repo, change to either `Java` or  `Python`.
+Change directory to *python* and deploy the `hello-python` function. Then change directory to *java* and deploy the
+ `hello-java` function. See steps below.
 
 To deploy the function, run the following command:
 ```
-fn -v deploy --app <your app name>
+fn -v deploy --app <app-name>
 ```
 e.g.
 ```
@@ -96,28 +84,33 @@ fn -v deploy --app myapp
 
 ![user input icon](./images/userinput.png)
 
-Invoke the *helloworld* function by entering:
-
+The command to invoke a function is 
 ```
-fn invoke <your app name> helloworld
-```
-e.g. 
-```
-fn invoke myapp helloworld
+fn invoke <app-name> <func-name>
 ```
 
-The Python version displays `{"message":"Hello World!"}` and the Java version displays `Hello World!`
+To invoke the Python `hello-python` function, run:
+```
+fn invoke myapp hello-python
+```
+The Python version displays `{"message":"Hello World"}`
 
-You can also pass in a payload to invoke the function. 
-For Java, run:
+To invoke the Python function with a payload, run: 
 ```
-echo -n "Bob" | fn invoke <your app name> helloworld
+echo -n '{"name":"Bob"}' | fn invoke myapp hello-python
 ```
-The `Hello Bob!` output is displayed.
-For Python, run:
+The `{"message":"Hello Bob"}` output is displayed.
+
+To invoke the Java `hello-java` function, run:
 ```
-echo -n '{"name":"Bob"}' | fn invoke <your app name> helloworld
+fn invoke myapp hello-java
 ```
-The `{"message":"Hello Bob!"}` output is displayed.
+The Java version displays `Hello, world!`
+
+To invoke the Java function with a payload, run: 
+```
+echo -n "Bob" | fn invoke myapp hello-java
+```
+The `Hello, Bob!` output is displayed.
 
 Congratulations! You've just created, deployed, and invoked the HelloWorld function using Oracle Functions!

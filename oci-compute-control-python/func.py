@@ -57,9 +57,9 @@ def handler(ctx, data: io.BytesIO=None):
         body = json.loads(data.getvalue())
         instance_ocid = body.get("instance_ocid")
         command = body.get("command")
-    except (Exception, ValueError) as ex:
-        print(str(ex), flush=True)
+    except (Exception) as ex:
         print("Two arguments need to be passed to the function, instance_ocid and the command")
+        print(str(ex), flush=True)
         raise
 
     signer = oci.auth.signers.get_resource_principals_signer()
@@ -72,7 +72,7 @@ def handler(ctx, data: io.BytesIO=None):
     elif command == 'stop':
         resp = instance_stop(compute_client, instance_ocid)
     else:
-        print("command not supported")
+        print("command not supported", flush=True)
         raise
 
     return response.Response(

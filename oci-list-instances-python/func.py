@@ -29,7 +29,8 @@ def list_instances(signer):
         inst = client.list_instances(signer.compartment_id)
         # Create a list that holds a list of the instances id and name next to each other
         inst = [[i.id, i.display_name] for i in inst.data]
-    except Exception as e:
-        inst = str(e)
+    except Exception as ex:
+        print("ERROR: accessing Compute instances failed", ex, flush=True)
+        raise
     resp = { "instances": inst }
     return resp
