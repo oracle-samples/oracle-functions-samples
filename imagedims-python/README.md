@@ -27,7 +27,7 @@ perform an action.
 
 
 ## Prerequisites
-Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
+Before you deploy this sample function, make sure you have run steps A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
 * A - Set up your tenancy
 * B - Create application
 * C - Set up your Cloud Shell dev environment
@@ -61,8 +61,8 @@ Python 3.6 function container image looks like this:
 FROM fnproject/python:3.6-dev as build-stage
 WORKDIR /function
 ADD requirements.txt /function/
-			RUN pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.txt &&\
-			 rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
+RUN pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.txt &&\
+		rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
 ADD . /function/
 RUN rm -fr /function/.pip_cache
 
