@@ -5,41 +5,33 @@ This function invokes another function.
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
+
+
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
+```
+fn ls apps
+```
 
 
 ## Create or Update your Dynamic Group
-In order to use and retrieve information about other OCI Services, your function
-must be part of a dynamic group. For information on how to create a dynamic group,
-click [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
+In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, refer to the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
 
-![user input icon](../images/userinput.png)
-
-When specifying the *Matching Rules*, consider the following examples:
-* If you want all functions in a compartment to be able to access a resource,
-enter a rule similar to the following that adds all functions in the compartment
-with the specified compartment OCID to the dynamic group:
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
 ```
-ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaaaa23______smwa'}
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
 ```
-* If you want a specific function to be able to access a resource, enter a rule
-similar to the following that adds the function with the specified OCID to the
-dynamic group:
-```
-resource.id = 'ocid1.fnfunc.oc1.iad.aaaaaaaaacq______dnya'
-```
-* If you want all functions with a specific defined tag (free-form tags are
-not supported) to be able to access a resource, enter a rule similar to the
-following that adds all functions with the defined tag to the dynamic group :
-```
-ALL {resource.type = 'fnfunc', tag.department.operations.value = '45'}
-```
+Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Running Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm) for other *Matching Rules* options.
 
 
-## Create or Update Policies
+## Create or Update IAM Policies
 Now that your dynamic group is created, create a new policy that allows the
 dynamic group to read any resources you are interested in receiving
 information about, in this case we will grant access to `functions-family` in
@@ -49,34 +41,13 @@ the functions related compartment.
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <your dynamic group name> to use functions-family in compartment <your compartment name>
-```
-e.g.
-```
-Allow dynamic-group demo-func-dyn-group to use functions-family in compartment demo-func-compartment
+Allow dynamic-group <dynamic-group-name> to use functions-family in compartment <compartment-name>
 ```
 
-For more information on how to create policies, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
+For more information on how to create policies, check the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
 
-## Create an Application to run your function
-You can use an application already created or create a new one as follow:
-![user input icon](./images/userinput.png)
-```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-You can find the subnet-ocid by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in),
-navigating to Core Infrastructure > Networking > Virtual Cloud Networks. Make
-sure you are in the correct Region and Compartment, click on your VCN and
-select the subnet you wish to use.
-
-e.g.
-```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
-```
-
-
-## Review and customize your function
+## Review and customize the function
 Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * its dependencies, [requirements.txt](./requirements.txt)
@@ -84,16 +55,35 @@ Review the following files in the current folder:
 
 
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
-```
-e.g.
-```
-fn -v deploy --app myapp
+fn -v deploy --app <app-name>
 ```
 
 
 ## Invoke the function
+To test the function, we need another function to invoke. If you do not have any, create a HelloWorld function for example and get its OCID and endpoint.
+
+![functions information](./images/function-information.png)
+
+The function requires the following keys in the payload to be invoked:
+- function_ocid, the OCID of the other function we are calling (HelloWorld for example)
+- function_endpoint, the endpoint of the other function
+- function_body, the body for the invocation of the other function
+
 ![user input icon](./images/userinput.png)
-Create another function such as a HelloWorld function ([HelloWorld Sample](../../helloworld))
+```
+echo '{ "function_ocid":"<function-OCID>", "function_endpoint":"<function-endpoint>", "function_body":"<function-body>" }' | fn invoke <app-name> oci-invoke-function-python
+```
+e.g.:
+```
+echo '{ "function_ocid":"ocid1.fnfunc.oc1.phx.aaaaaxxxxxxx", "function_endpoint":"https://xxxxxx.us-phoenix-1.functions.oci.oraclecloud.com", "function_body":"" }' | fn invoke myapp oci-invoke-function-python
+```
+
+You should see the following output:
+```json
+{"message": "Hello World"}
+```

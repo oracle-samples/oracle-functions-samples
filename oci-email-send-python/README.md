@@ -5,27 +5,22 @@ As you make your way through this tutorial, look out for this icon ![user input 
 Whenever you see it, it's time for you to perform an action.
 
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
 
-
-## Create an Application to run your function
-You can use an application already created or create a new one as follow:
-![user input icon](./images/userinput.png)
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
 ```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-Get the OCID of the subnet in your VCN you wish to use.
-
-e.g.
-```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
+fn ls apps
 ```
 
 
-## Review and customize your function
+## Review and customize the function
 Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * its dependencies, [requirements.txt](./requirements.txt)
@@ -33,13 +28,12 @@ Review the following files in the current folder:
 
 
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
-```
-e.g.
-```
-fn -v deploy --app myapp
+fn -v deploy --app <app-name>
 ```
 
 
@@ -68,12 +62,12 @@ The function requires the following configuration values to be set:
 
 ![user input icon](../images/userinput.png)
 
-Use the *fn* CLI to set the config value:
+Use the *fn CLI* to set the config value:
 ```
-fn config function <your app name> <function name> smtp-username <SMTP username>
-fn config function <your app name> <function name> smtp-password <SMTP password>
-fn config function <your app name> <function name> smtp-host <SMTP Server name>
-fn config function <your app name> <function name> smtp-port <SMTP Port>
+fn config function <app-name> <function-name> smtp-username <SMTP-username>
+fn config function <app-name> <function-name> smtp-password <SMTP-password>
+fn config function <app-name> <function-name> smtp-host <SMTP-Server-name>
+fn config function <app-name> <function-name> smtp-port <SMTP-Port>
 ```
 e.g.
 ```
@@ -94,8 +88,8 @@ The function requires the following keys in the payload to be invoked:
 
 ![user input icon](./images/userinput.png)
 ```
-echo '{ "sender-email":"<approved sender email>", "sender-name":"<sender name>", "recipient":"<recipient email>",
-"subject":"<email subject>", "body":"<email body>" }' | fn invoke <your app name> oci-email-send-python
+echo '{ "sender-email":"<approved-sender-email>", "sender-name":"<sender-name>", "recipient":"<recipient-email>",
+"subject":"<email-subject>", "body":"<email-body>" }' | fn invoke <app-name> oci-email-send-python
 ```
 e.g.:
 ```

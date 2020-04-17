@@ -5,29 +5,34 @@ This function connects to an Autonomous Database using ORDS and executes a SQL s
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
 
-## Create an Application to run your function
-You can use an application already created or create a new one as follow:
 
-![user input icon](./images/userinput.png)
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
 ```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-You can find the subnet-ocid by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in),
-navigating to Core Infrastructure > Networking > Virtual Cloud Networks. Make
-sure you are in the correct Region and Compartment, click on your VCN and
-select the subnet you wish to use.
-
-e.g.
-```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
+fn ls apps
 ```
 
-## Review and customize your function
+
+## Create or Update your Dynamic Group
+In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, refer to the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
+
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
+```
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
+```
+Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Running Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm) for other *Matching Rules* options.
+
+
+
+## Review and customize the function
 Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * its dependencies, [requirements.txt](./requirements.txt)
@@ -35,15 +40,16 @@ Review the following files in the current folder:
 
 In the code, we assume the schema and the database username are the same. Feel free to change this.
 
+
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
+fn -v deploy --app <app-name>
 ```
-e.g.
-```
-fn -v deploy --app myapp
-```
+
 
 ## Create an Autonomous Database
 Use an existing Autonomous Database (either Transaction Processing or Datawarehouse) or create a new one as follows.
@@ -67,15 +73,16 @@ On the Service Console, navigate to Development and copy the ORDS Base URL, we w
 
 The *admin* schema is enabled for REST access by default, so you can test the function using the *admin* schema. For Production, it is recommended to create a separate schema and enable REST Service. For more information on how to do this, check the documentation at https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.1/index.html.
 
+
 ## Set the function configuration values
 The function requires the config value *ords-base-url*, *db-schema* and *db-pwd-cypher* to be set.
 ![user input icon](../images/userinput.png)
 
-Use the *fn* CLI to set the config value:
+Use the *fn CLI* to set the config value:
 ```
-fn config function <your app name> <function name> ords-base-url <ORDS Base URL>
-fn config function <your app name> <function name> db-schema <DB schema>
-fn config function <your app name> <function name> db-pwd-cypher <DB encrypted password>
+fn config function <app-name> <function-name> ords-base-url <ORDS-Base-URL>
+fn config function <app-name> <function-name> db-schema <DB-schema>
+fn config function <app-name> <function-name> db-pwd-cypher <DB-encrypted-password>
 ```
 e.g.
 ```
@@ -84,11 +91,12 @@ fn config function myapp oci-adb-ords-runsql-python db-schema "admin"
 fn config function myapp oci-adb-ords-runsql-python db-pwd-cypher "xxxxxxxxx"
 ```
 
+
 ## Invoke the function
 ![user input icon](./images/userinput.png)
 ```
 
-echo '{"sql":"<sql statement>"}' | fn invoke <your app name> oci-adb-ords-runsql-python
+echo '{"sql":"<sql statement>"}' | fn invoke <app-name> oci-adb-ords-runsql-python
 ```
 e.g.:
 ```
