@@ -81,11 +81,11 @@ fn -v deploy --app myapp
 ### Invoke the function
 ![user input icon](./images/userinput.png)
 ```
-echo '{"command":"<command>", "instance_ocid":"<instance OCID>"}' | fn invoke <your app name> compute-control
+echo '{"command":"<command>", "instance_ocid":"<instance OCID>"}' | fn invoke <your app name> oci-compute-control-python
 ```
 e.g. To stop an instance:
 ```
-echo '{"command":"stop", "instance_ocid":"ocid1.fnfunc.oc1.iad.aaaaaacq____dnya"}' | fn invoke myapp compute-control
+echo '{"command":"stop", "instance_ocid":"ocid1.fnfunc.oc1.iad.aaaaaacq____dnya"}' | fn invoke myapp oci-compute-control-python
 ```
 The supported values for `command` are "status", "start" and "stop".
 
