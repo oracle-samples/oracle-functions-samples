@@ -89,7 +89,8 @@ fn -v deploy --app myapp
 ```
 
 
-## Invoke the function
+## Test
+
 ![user input icon](../images/userinput.png)
 ```
 fn invoke <app-name> <function-name>
