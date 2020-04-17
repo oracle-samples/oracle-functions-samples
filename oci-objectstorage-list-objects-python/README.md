@@ -106,7 +106,7 @@ Review the following files in the current folder:
 - [func.yaml](./func.yaml) that contains metadata about your function and declares properties
 - [func.py](./func.py) which is your actual Python function
 
-The name of your function *oci-objectstorage-list-objects* is specified in [func.yaml](./func.yaml).
+The name of your function *oci-objectstorage-list-objects-python* is specified in [func.yaml](./func.yaml).
 
 
 ## Deploy the function
@@ -129,6 +129,6 @@ echo -n <JSON object> | fn invoke <your app name> <your function name>
 ```
 e.g.
 ```
-echo -n '{"bucketName": "<bucket-name>"}' | fn invoke object-crud oci-objectstorage-list-objects
+echo -n '{"bucketName": "<bucket-name>"}' | fn invoke object-crud oci-objectstorage-list-objects-python
 ```
 Upon success, you should see either a list of objects on your terminal.
