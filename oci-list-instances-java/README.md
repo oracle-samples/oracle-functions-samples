@@ -1,4 +1,4 @@
-# Function that returns the list of instances in the calling Compartment.
+# Function that returns the list of instances in the calling Compartment
 
 This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Java SDK](https://docs.cloud.oracle.com/iaas/tools/java/latest/).
@@ -99,7 +99,7 @@ Review the following files in the current folder:
 - [func.yaml](./func.yaml) that contains metadata about your function and declares properties
 - [src/main/java/com/example/fn/ComputeInstancesList.java](./src/main/java/com/example/fn/ComputeInstancesList.java) which contains the Java code
 
-The name of your function *list-instances* is specified in [func.yaml](./func.yaml).
+The name of your function *oci-list-instances-java* is specified in [func.yaml](./func.yaml).
 
 ## Deploy the function
 ![user input icon](../images/userinput.png)
@@ -121,7 +121,7 @@ echo -n '<COMPARTMENT_OCID>' | fn invoke <your app name> <your function name>
 ```
 e.g.
 ```
-echo -n 'ocid1.compartment.oc1...2jn3htfoobar' | fn invoke myapp list-instances
+echo -n 'ocid1.compartment.oc1...2jn3htfoobar' | fn invoke myapp oci-list-instances-java
 ```
 Upon success, you should see a map of instances in your compartment appear on your terminal.
 Key is the OCID of the instance and value is a String representation of the Instance object.
