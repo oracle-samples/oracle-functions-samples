@@ -13,7 +13,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Hello World                                          |[sample](./helloworld)|[sample](./helloworld)|
 | List OCI Compute instances                           |[sample](./oci-list-instances-python)|[sample](./oci-list-instances-java)|
 | Control OCI Compute instances (start/stop/status)    |[sample](./oci-compute-control-python)|
-| List OCI compartments                                |[sample](./oracle-functions-samples/oci-list-compartments-python)|
+| List OCI compartments                                |[sample](./oci-list-compartments-python)|
 | List objects in OCI Object Storage                   |[sample](./oci-objectstorage-list-objects-python)|[sample](./oci-objectstorage-list-objects-java)|
 | Read an object in OCI Object Storage                 |[sample](./oci-objectstorage-get-object-python)|[sample](./oci-objectstorage-get-object-java)|
 | Create an object in OCI Object Storage               |[sample](./oci-objectstorage-put-object-python)|[sample](./oci-objectstorage-put-object-java)|
