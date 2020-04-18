@@ -4,80 +4,61 @@ This function creates a PAR (Pre-Authenticated Request) for a bucket in Object S
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
+
+
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
+```
+fn ls apps
+```
+
 
 ## Create or Update your Dynamic Group
-In order to use other OCI Services, your function
-must be part of a dynamic group. For information on how to create a dynamic group,
-go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
+In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, refer to the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
 
-![user input icon](./images/userinput.png)
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
+```
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
+```
+Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Running Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm) for other *Matching Rules* options.
 
-When specifying the *Matching Rules*, consider the following examples:
-* Matching all functions in a compartment:
-```
-ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaaaa23______smwa'}
-```
-* Matching a specific function by its OCID:
-```
-resource.id = 'ocid1.fnfunc.oc1.iad.aaaaaaaaacq______dnya'
-```
-* Matching functions with a defined tag (free-form tags are not supported):
-```
-ALL {resource.type = 'fnfunc', tag.department.operations.value = '45'}
-```
 
-## Create or Update Policies
+## Create or Update IAM Policies
 Create a new policy that allows the dynamic group to manage compute instances. We will grant `manage` access to a specific `bucket` and `objects` in that bucket for a given compartment.
 
 ![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <your dynamic group name> to manage buckets in compartment <your compartment name> where target.bucket.name=<your bucket name>
-Allow dynamic-group <your dynamic group name> to manage objects in compartment <your compartment name> where target.bucket.name=<your bucket name>
+Allow dynamic-group <dynamic-group-name> to manage buckets in compartment <compartment-name> where target.bucket.name=<bucket-name>
+Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<bucket-name>
 ```
-e.g.
-```
-Allow dynamic-group demo-func-dyn-group to manage buckets in compartment my-compartment where target.bucket.name='my-bucket'
-Allow dynamic-group demo-func-dyn-group to manage objects in compartment my-compartment where target.bucket.name='my-bucket'
-```
-
 For more information on how to create policies, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
 
-## Identify or Create an Application to run your function
-You can use an application already created or create a new one as follow:
-![user input icon](./images/userinput.png)
-```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-Get the OCID of the subnet in your VCN you wish to use.
-
-e.g.
-```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
-```
-
 ## Review and customize your function
-Review:
+Review the following files in the current folder:
 * the code of the function, [func.py](./func.py)
 * its dependencies, [requirements.txt](./requirements.txt)
 * the function metadata, [func.yaml](./func.yaml)
 
 
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
+fn -v deploy --app <app-name>
 ```
-e.g.
-```
-fn -v deploy --app myapp
-```
+
 
 ## Set the function configuration values
 The function requires the config value *bucket-name* and *lifetime* to be set.
@@ -85,8 +66,8 @@ The function requires the config value *bucket-name* and *lifetime* to be set.
 
 Use the *fn* CLI to set the config value:
 ```
-fn config function <your app name> <function name> bucket-name <your bucket name>
-fn config function <your app name> <function name> lifetime <PAR lifetime in minutes>
+fn config function <app-name> <function-name> bucket-name <bucket-name>
+fn config function <app-name> <function-name> lifetime <PAR-lifetime-in-minutes>
 ```
 e.g.
 ```
@@ -95,10 +76,12 @@ fn config function myapp oci-objectstorage-create-par-python lifetime '1'
 ```
 
 ## Invoke the function
+The function requires the name of the PAR in the payload to be invoked.
+
 ![user input icon](./images/userinput.png)
 ```
 
-echo '{"PAR name": <PAR name> }' | fn invoke <your app name> oci-objectstorage-create-par-python
+echo '{"PAR name": <PAR name> }' | fn invoke <app-name> oci-objectstorage-create-par-python
 ```
 e.g.:
 ```

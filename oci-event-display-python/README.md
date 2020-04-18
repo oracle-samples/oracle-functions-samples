@@ -5,25 +5,31 @@ This function logs the details of a Cloud event.
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
-## Pre-requisites
-1. Start by making sure all of your policies are correct from this [guide](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Tenancy%20for%20Function%20Development%7C_____4)
 
-2. Have [Fn CLI setup with Oracle Functions](https://docs.cloud.oracle.com/iaas/Content/Functions/Tasks/functionsconfiguringclient.htm?tocpath=Services%7CFunctions%7CPreparing%20for%20Oracle%20Functions%7CConfiguring%20Your%20Client%20Environment%20for%20Function%20Development%7C_____0)
+## Prerequisites
+Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+* A - Set up your tenancy
+* B - Create application
+* C - Set up your Cloud Shell dev environment
 
-## Create an Application to run your function
-You can use an application already created or create a new one as follow:
-![user input icon](./images/userinput.png)
-```
-fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
-```
-Get the OCID of the subnet in your VCN you wish to use.
 
-e.g.
+## List Applications 
+Assuming your have successfully completed the prerequisites, you should see your 
+application in the list of applications.
 ```
-fn create app myapp --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
+fn ls apps
 ```
 
-Running this function without access to the logs will have a limited value, we recommend configuring the application logs to go to Papertrail. Refer to [syslog-setup](https://orahub.oraclecorp.com/oracle-functions-samples/syslog-setup).
+
+## Create or Update your Dynamic Group
+In order to use other OCI Services, your function must be part of a dynamic group. For information on how to create a dynamic group, refer to the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm#To).
+
+When specifying the *Matching Rules*, we suggest matching all functions in a compartment with:
+```
+ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..aaaaaxxxxx'}
+```
+Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Running Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm) for other *Matching Rules* options.
+
 
 ## Review and customize your function
 Review the following files in the current folder:
@@ -31,15 +37,16 @@ Review the following files in the current folder:
 * its dependencies, [requirements.txt](./requirements.txt)
 * the function metadata, [func.yaml](./func.yaml)
 
+
 ## Deploy the function
+In Cloud Shell, run the *fn deploy* command to build the function and its dependencies as a Docker image, 
+push the image to OCIR, and deploy the function to Oracle Functions in your application.
+
 ![user input icon](./images/userinput.png)
 ```
-fn -v deploy --app <your app name>
+fn -v deploy --app <app-name>
 ```
-e.g.
-```
-fn -v deploy --app myapp
-```
+
 
 ## Create the Cloud Event rule
 Create a Cloud Event rule on the console navigating to Application Integration > Event Service. Click *Create Rule*.
