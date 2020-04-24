@@ -82,8 +82,8 @@ def handler(ctx, data: io.BytesIO=None):
     object_name = bucket_name = namespace = ordsbaseurl = schema = dbuser = dbpwd = ""
     try:
         cfg = ctx.Config()
-        input_bucket = cfg["input_bucket"]
-        processed_bucket = cfg["processed_bucket"]
+        input_bucket = cfg["input-bucket"]
+        processed_bucket = cfg["processed-bucket"]
         ordsbaseurl = cfg["ords-base-url"]
         schema = cfg["db-schema"]
         dbuser = cfg["db-user"]
