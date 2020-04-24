@@ -146,7 +146,7 @@ e.g.
 fn config function myapp oci-adb-ords-runsql-python ords-base-url "https://xxxxxx-db123456.adb.us-region.oraclecloudapps.com/ords/"
 fn config function myapp oci-adb-ords-runsql-python db-schema "admin"
 fn config function myapp oci-adb-ords-runsql-python db-user "admin"
-fn config function myapp oci-adb-ords-runsql-python dbpwd-cypher "xxxxxxxxx"
+fn config function myapp oci-adb-ords-runsql-python dbpwd-cipher "xxxxxxxxx"
 fn config function myapp oci-adb-ords-runsql-python input-bucket "input-bucket"
 fn config function myapp oci-adb-ords-runsql-python processed-bucket "processed-bucket"
 ```
