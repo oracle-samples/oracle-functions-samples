@@ -46,7 +46,7 @@ ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1.
 
 ## Create or Update IAM Policies
 
-Create a new policy that allows the dynamic group to inspect `instance-family` in
+Create a new policy that allows the dynamic group to `inspect instances` in
 the functions related compartment.
 
 ![user input icon](../images/userinput.png)
