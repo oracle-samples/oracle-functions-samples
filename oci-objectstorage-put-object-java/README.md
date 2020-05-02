@@ -126,6 +126,6 @@ echo -n '{"name": "<object-name>", "bucketName":"<bucket-name>", "content": "<te
 ```
 e.g.
 ```
-echo -n '{"name": "file1.txt", "bucketName":"test", "content": "This file was created in OCI object storage bucket using Oracle Functions"}' | fn invoke myapp oci-objectstorage-put-object-java
+echo -n '{"name": "file1.txt", "bucketName":"mybucket", "content": "This file was created in OCI object storage bucket using Oracle Functions"}' | fn invoke myapp oci-objectstorage-put-object-java
 ```
 You should see a success message appear in your terminal.
