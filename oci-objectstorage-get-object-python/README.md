@@ -51,18 +51,18 @@ ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1.
 
 ## Create or Update IAM Policies
 
-Create a new policy that allows the dynamic group to read `object-family` in
+Create a new policy that allows the dynamic group to `read objects` in
 the functions related compartment.
 
 ![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <dynamic-group name> to read object-family in compartment <compartment-name>
+Allow dynamic-group <dynamic-group name> to read objects in compartment <compartment-name>
 ```
 e.g.
 ```
-Allow dynamic-group demo-func-dyn-group to read object-family in compartment demo-func-compartment
+Allow dynamic-group demo-func-dyn-group to read objects in compartment demo-func-compartment
 ```
 
 For more information on how to create policies, go [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
