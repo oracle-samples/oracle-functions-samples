@@ -58,7 +58,7 @@ Assign a display name and a description, customize the Rule Conditions or leave 
 ![user input icon](./images/2-create_event_rule.png)
 
 ## Test
-Go to the logs, you should see events from your compartment. If you don't create something such as an Object Storage bucket to generate an event.
+Go to the logs, you should see events from your compartment. You can create some resource such as an Object Storage bucket to generate an event.
 For example:
 ```json
 event type: com.oraclecloud.objectstorage.createbucket
@@ -75,12 +75,12 @@ Full Cloud event json data:
         "compartmentId": "ocid1.compartment.oc1..aaaaaaaal66tw5k262fsjsrgdqan5cbbfxvoydbhxx5hijth2h3qlbwmtdlq",
         "compartmentName": "greg-verstraeten",
         "resourceName": "bucket-20191212-1425",
-        "resourceId": "/n/oracle-serverless-devrel/b/",
+        "resourceId": "/n/devrel/b/",
         "availabilityDomain": "PHX-AD-2",
         "additionalDetails": {
             "bucketName": "bucket-20191212-1425",
             "publicAccessType": "NoPublicAccess",
-            "namespace": "oracle-serverless-devrel",
+            "namespace": "devrel",
             "eTag": "47b12898-1925-449a-a761-7d1db57f0695"
         }
     },
