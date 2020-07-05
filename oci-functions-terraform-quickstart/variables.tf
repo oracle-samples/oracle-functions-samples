@@ -8,5 +8,5 @@ variable "private_key_path" {}
 variable "region" {}
 variable "default_compartment_id" {}
 variable "function_image" {
-  default = "syd.ocir.io/ociateam/helloworld:0.0.1" #Please change this.
+  default = "syd.ocir.io/ociateam/helloworld:0.0.1" #Please change this if you have built a docker image with different tags, see README.
 }
