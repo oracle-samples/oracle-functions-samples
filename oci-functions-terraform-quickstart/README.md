@@ -132,9 +132,9 @@ function_result = {
   "base64_encode_content" = false
   "content" = "{\"message\": \"Hello Oracle\"}"
   "fn_invoke_type" = "sync"
-  "function_id" = "ocid1.fnfunc.oc1.ap-sydney-1.aaaaaaaaaasne7yoclha2f4bijfyzmicbhwt2x2ex5xaf3isvo2px2qcd4la"
+  "function_id" = "ocid1.fnfunc.oc1.ap-sydney-1.aaaaaaaaaa"
   "id" = "2020-07-05 23:28:22.737902 +0000 UTC"
-  "invoke_endpoint" = "https://a6v4pjf4mma.ap-sydney-1.functions.oci.oraclecloud.com"
+  "invoke_endpoint" = "https://xxxx.ap-sydney-1.functions.oci.oraclecloud.com"
   "invoke_function_body" = "{\"name\":\"Oracle\"}"
 }
 ```
