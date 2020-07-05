@@ -23,32 +23,25 @@ Note: Alternatively, You can also use your local machine or OCI Compute as your 
 
 ![Helloworld Function](./images/helloworld.png)
 
-## Create Docker image using cloudshell
-
-![user input icon](./images/userinput.png)
+## Create Docker image using cloudshell ![user input icon](./images/userinput.png)
 
 *  Login to OCI Cloud Console and Launch cloud shell
 
 
-*  Use the context for your region, Here ap-sydney-1 is used as an example
-
-![user input icon](./images/userinput.png)
+*  Use the context for your region, Here ap-sydney-1 is used as an example ![user input icon](./images/userinput.png)
 ```
 fn list context
 fn use context ap-sydney-1
 ```
 
 
-*  Update the context with the function's compartment ID
-
-![user input icon](./images/userinput.png)
+*  Update the context with the function's compartment ID ![user input icon](./images/userinput.png)
 ```
 fn update context oracle.compartment-id ocid1.compartment.oc1..
 ```
 
 
-*  Update the context with the location of the Registry you want to use
-![user input icon](./images/userinput.png)
+*  Update the context with the location of the Registry you want to use ![user input icon](./images/userinput.png)
 ```
 fn update context registry syd.ocir.io/<YOUR-NAMESPACE>/[YOUR-OCIR-REPO]
 ```
@@ -68,21 +61,18 @@ docker login -u '<YOUR-NAMESPACE>/oracleidentitycloudservice/<User-EMAIL-ID>' sy
 #  Create Docker image
 
 
-*  Generate a 'hello-world' boilerplate function
-![user input icon](./images/userinput.png)
+*  Generate a 'hello-world' boilerplate function ![user input icon](./images/userinput.png)
 ```
 fn init --runtime python helloworld
 ```
 
 
-*  Create Docker image
-![user input icon](./images/userinput.png)
+*  Create Docker image ![user input icon](./images/userinput.png)
 ```
 cd helloworld
 ```
 
-*  Create a file named Dockerfile and add the below contents
-![user input icon](./images/userinput.png)
+*  Create a file named Dockerfile and add the below contents ![user input icon](./images/userinput.png)
 ```
 FROM oraclelinux:7-slim
 WORKDIR /function
@@ -102,8 +92,7 @@ ENTRYPOINT ["/usr/local/bin/fdk", "/function/func.py", "handler"]
 ```
 
 
-*  Build and Push to OCI Registry
-![user input icon](./images/userinput.png)
+*  Build and Push to OCI Registry ![user input icon](./images/userinput.png)
 ```
 docker build . -t syd.ocir.io/ociateam/helloworld:0.0.1
 docker push syd.ocir.io/ociateam/helloworld:0.0.1
@@ -132,4 +121,33 @@ Then apply the example using the following commands:
 $ terraform init
 $ terraform plan
 $ terraform apply
+```
+
+## Output
+
+```
+Outputs:
+
+function_result = {
+  "base64_encode_content" = false
+  "content" = "{\"message\": \"Hello Oracle\"}"
+  "fn_invoke_type" = "sync"
+  "function_id" = "ocid1.fnfunc.oc1.ap-sydney-1.aaaaaaaaaasne7yoclha2f4bijfyzmicbhwt2x2ex5xaf3isvo2px2qcd4la"
+  "id" = "2020-07-05 23:28:22.737902 +0000 UTC"
+  "invoke_endpoint" = "https://a6v4pjf4mma.ap-sydney-1.functions.oci.oraclecloud.com"
+  "invoke_function_body" = "{\"name\":\"Oracle\"}"
+}
+```
+
+## Known Issues
+
+Occasionally you might encounter this error while function invoke, if it happens wait for few seconds and 
+re-run $ terraform apply.
+```
+oci_functions_invoke_function.this: Creating...
+
+Error: Service error:NotAuthenticated. Not authenticated. http status code: 401. Opc request id: cd21e84b557068d812ad3660fd66022e/01ECGMWPC01BT0M70ZJ000Y9ZP/01ECGMWPC01BT0M70ZJ000Y9ZQ
+
+  on functions.tf line 41, in resource "oci_functions_invoke_function" "this":
+  41: resource "oci_functions_invoke_function" "this" {
 ```
