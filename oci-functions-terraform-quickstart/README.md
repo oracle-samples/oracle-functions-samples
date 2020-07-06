@@ -1,4 +1,4 @@
-# OCI Functions Simple Example
+# OCI Functions Terraform QuickStart Example
 
 This is a OCI (Oracle Cloud Infrastructure) Functions Hello World terraform automation. It creates all the necessary OCI resources (VCN, Subnets etc..) required including OCI functions application and function and finally invokes it. All this is done using terraform.
 
