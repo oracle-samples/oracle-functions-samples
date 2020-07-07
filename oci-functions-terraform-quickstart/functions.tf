@@ -44,7 +44,7 @@ resource "oci_functions_invoke_function" "this" {
 
   #Optional
   invoke_function_body = local.invoke_function_invoke_function_body
-  #fn_intent = "${var.invoke_function_fn_intent}"
+  fn_intent = "cloudevent"
   fn_invoke_type        = local.invoke_function_fn_invoke_type
   base64_encode_content = false
 }

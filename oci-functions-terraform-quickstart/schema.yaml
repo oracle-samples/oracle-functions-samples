@@ -1,0 +1,41 @@
+# Copyright (c) 2020 Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
+title: "Oracle Functions Quick Start"
+stackDescription: "This is a OCI (Oracle Cloud Infrastructure) Functions Hello World terraform automation. It creates all the necessary OCI resources (VCN, Subnets etc..) required including OCI functions application and function and finally invokes it. All this is done using terraform."
+schemaVersion: 1.1.0
+version: "20190304"
+
+logoUrl: "https://cloudmarketplace.oracle.com/marketplace/content?contentId=58352039"
+
+source:
+  type: marketplace
+  reference: 47726045
+
+locale: "en"
+
+variableGroups:
+  - title: General Configuration
+    visible: false
+    variables:
+      - default_compartment_id
+      - tenancy_id
+      - user_id
+      - region
+      - fingerprint
+      - private_key_path
+    
+  - title: Required Configuration
+    visible: true  
+    variables:
+      - function_image
+
+variables:
+  function_image:
+    title: Function Image
+    required: true
+ 
+outputGroups:
+  - title: Function Result
+    outputs:
+      - ${function_result}

@@ -100,7 +100,10 @@ docker push syd.ocir.io/ociateam/helloworld:0.0.1
 
 
 
-## Terraform
+## Terraform Deployment
+
+# Deploy using local dev environment:
+
 Prepare one variable file named `terraform.tfvars` with the required information 
 The contents of `terraform.tfvars` should look something like the following:
 
@@ -122,6 +125,19 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 ```
+
+# Deploy using Resource Manager:
+
+* Clone this Repo
+* Create a Configuration .zip file to upload onto Resource Manager as shown below
+```
+$ cd oci-functions-terraform-quickstart
+$ zip -r oci-functions-terraform-quickstart *
+```
+* Open the OCI Console, Select Resource Manager -> Stacks -> Create Stack and upload the (.zip) file created
+during previous step. Also follow the instructions on the screen.
+
+![Resource Manager Stack](./images/resource_manager.png)
 
 ## Output
 
