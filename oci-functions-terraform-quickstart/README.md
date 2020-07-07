@@ -126,19 +126,6 @@ $ terraform plan
 $ terraform apply
 ```
 
-# Deploy using Resource Manager:
-
-* Clone this Repo
-* Create a Configuration .zip file to upload onto Resource Manager as shown below
-```
-$ cd oci-functions-terraform-quickstart
-$ zip -r oci-functions-terraform-quickstart *
-```
-* Open the OCI Console, Select Resource Manager -> Stacks -> Create Stack and upload the (.zip) file created
-during previous step. Also follow the instructions on the screen.
-
-![Resource Manager Stack](./images/resource_manager.png)
-
 ## Output
 
 ```
