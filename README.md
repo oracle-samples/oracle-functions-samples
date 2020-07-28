@@ -30,7 +30,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | API Gateway Function authorizer for IDCS             | |[sample](./samples/oci-apigw-authorizer-idcs-java)
 | Function that returns the API Gateway HTTP request information |[sample](./samples/oci-apigw-display-httprequest-info-python)
 | Function for API Gateway that validates an API key   |[sample](./samples/oci-apigw-apikey-validation-python)
-| Write IAM policies that enables Functions in a tenancy to access resources in other tenancies |[sample](./samples/oci-cross-tenancy-policies-java)
+| Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 
 ## Use Cases
 | Description                                          | Code | Docs |
