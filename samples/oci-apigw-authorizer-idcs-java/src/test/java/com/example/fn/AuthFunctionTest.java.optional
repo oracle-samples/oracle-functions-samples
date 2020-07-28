@@ -1,0 +1,85 @@
+/*
+# oci-apigw-authorizer-idcs-java version 1.0.
+#
+# Copyright (c) 2020 Oracle, Inc.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+*/
+
+package com.example.fn;
+
+import com.example.utils.JWKUtil;
+import com.example.utils.ResourceServerConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fnproject.fn.testing.*;
+import org.junit.*;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static org.junit.Assert.*;
+
+public class AuthFunctionTest {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    public static class Result {
+        // required
+        public boolean active;
+        public String principal;
+        public String[] scope;
+        public String expiresAt;
+
+        // optional
+        public String wwwAuthenticate;
+
+        // optional
+        public String clientId;
+
+        // optional context
+        public Map<String,String> context;
+    }
+
+    private static String INVALID_TOKEN = "Bearer invalid";
+    private static String INPUT_FORMAT = "{\n" +
+        "  \"type\":\"TOKEN\",\n" +
+        "  \"token\": \"Bearer %s\"\n" +
+        "}";
+
+    @Rule
+    public final FnTestingRule testing = FnTestingRule.createDefault();
+
+    @Test
+    public void shouldReturnInactive() throws IOException {
+        final String input = "{\n" +
+            "  \"type\":\"TOKEN\",\n" +
+            "  \"token\": \"" + INVALID_TOKEN + "\"\n" +
+            "}";
+
+        testing.givenEvent().withBody(input).enqueue();
+        testing.thenRun(AuthFunction.class, "handleRequest");
+
+        FnResult fnResult = testing.getOnlyResult();
+
+        Result result = mapper.readValue(fnResult.getBodyAsString(), Result.class);
+        assertFalse(result.active);
+        assertEquals("Bearer error=\"invalid_token\", error_description=\"Invalid JWT serialization: Missing dot delimiter(s)\"", result.wwwAuthenticate);
+    }
+
+    @Test
+    public void shouldReturnActive() throws Exception {
+
+        String token = JWKUtil.getBearer(ResourceServerConfig.TEST_CLIENT_ID, ResourceServerConfig.TEST_CLIENT_SECRET, ResourceServerConfig.TEST_CLIENT_SCOPE);
+        System.out.println(token);
+
+        final String input = String.format(INPUT_FORMAT, token);
+
+        testing.givenEvent().withBody(input).enqueue();
+        testing.thenRun(AuthFunction.class, "handleRequest");
+
+        FnResult fnResult = testing.getOnlyResult();
+
+        Result result = mapper.readValue(fnResult.getBodyAsString(), Result.class);
+        assertTrue(result.active);
+        System.out.println(fnResult.getBodyAsString());
+    }
+}
