@@ -22,7 +22,6 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Invoke another Function                              |[sample](./samples/oci-invoke-function-python)|||
 | Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) | 
 | Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| 
-| Run a SQL statement against Autonomous DB using JDBC ||[sample](./samples/oci-adb-jdbc-java)|
 | Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
 | Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)
@@ -44,7 +43,6 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Description                                          | Code | Blog |
 |------------------------------------------------------|:------:|:----:|
 | Serverless SaaS Extensions using Oracle Functions, API Gateway and VBCS |  | [blog](https://www.ateam-oracle.com/the-cloud-native-approach-to-extending-your-saas-applications)
-| Function that demonstrates connectivity between Oracle SaaS applications with OIC | [repo](./samples/oci-oic-hsm-object-upload)|
 
 
 ## Documentation
