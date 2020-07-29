@@ -1,6 +1,0 @@
-schema_version: 20180708
-name: oci-apigw-display-httprequest-info-python
-version: 0.0.8
-runtime: python
-entrypoint: /python/bin/fdk /function/func.py handler
-memory: 256
