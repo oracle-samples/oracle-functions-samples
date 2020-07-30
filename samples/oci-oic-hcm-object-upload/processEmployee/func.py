@@ -16,11 +16,11 @@ import oci.object_storage
 def handler(ctx, data: io.BytesIO = None):
 
     signer = oci.auth.signers.get_resource_principals_signer()
-    bucketname = "saas-oic-oci-poc"
 
     try:
         cfg = ctx.Config()
         cfg_namespace = cfg["OCI_NAMESPACE"]
+        cfg_bucketname = cfg["OCI_BUCKETNAME"]
     except Exception as ex:
         print("Error: Configuration key has not been set.", ex, flush=True)
         raise
@@ -40,7 +40,7 @@ def handler(ctx, data: io.BytesIO = None):
     filename = personid + "_data.csv"
     personinfo = personid + ", " + firstname + ", " + lastname + ", " + workemail + ", " + hiredate + ", " + effectivestartdate
 
-    return_output = put_object(signer, bucketname, filename, personinfo, cfg_namespace=cfg_namespace)
+    return_output = put_object(signer, cfg_bucketname, filename, personinfo, cfg_namespace=cfg_namespace)
     return response.Response(
         ctx,
         response_data=json.dumps(return_output),
