@@ -45,8 +45,8 @@ def get_dbwallet_from_autonomousdb():
 #
 # Instantiation code: executed once when the function container is initialized
 #
-if os.getenv("DBUSER") != None:
-    dbuser = os.getenv("DBUSER")
+if os.getenv("DBUSR") != None:
+    dbuser = os.getenv("DBUSR")
 else:
     raise ValueError("ERROR: Missing configuration key DBUSER")
 if os.getenv("DBPWD_CYPHER") != None:
