@@ -78,6 +78,12 @@ fn invoke myapp oci-logs-to-datadog-python < test-logs.json
 You should see the logs appear in Datadog.
 
 
+## Basic observability for Functions
+
+Make sure you configure basic observability for your function using metrics, alarms and email alerts using:
+* [Basic Observability for Functions](../basic-observability/functions.md)
+
+
 ## Configure the logs you want to capture
 
 1. From the [OCI Console](https://cloud.oracle.com) navigation menu, select **Logging**, and then select **Log Groups**.
@@ -98,3 +104,7 @@ You should see the logs appear in Datadog.
 4. On Configure Target connection, select the compartment and select the Function. If prompted to create a policy for writing to functions, click Create.
 
 
+## Basic observability for Service Connector
+
+Make sure you configure basic observability for your Service Connector using metrics, alarms and email alerts:
+* [Basic Observability for Service Connector](../basic-observability/service-connector-hub.md)
