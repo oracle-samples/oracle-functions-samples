@@ -77,4 +77,10 @@ You should see the SMS notifications sent by Syniverse.
 4. On Configure Target connection, select the compartment and select the Function name. If prompted to create a policy for writing to Function, click Create.
 
 
+## Monitoring Functions and Service Connector
+
+Make sure you configure basic observability for your function and connector using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Service Connector](../../basic-observability/service-connector-hub.md)
+
 

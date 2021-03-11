@@ -86,3 +86,10 @@ You should see the SMS notifications sent by Syniverse.
 
 6. On **Notification** select **Destination service** as notification service, select the compartment **syniverse_compartment**, and select **Topic** as Alerts_Syniverse_SMS_Notification
 
+
+## Monitoring Functions and Notifications Topics
+
+Make sure you configure basic observability for your function and topic using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Notifications Topic](../../basic-observability/notifications.md)
+

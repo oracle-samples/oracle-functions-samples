@@ -98,3 +98,9 @@ You should see the logs appear in Datadog.
 4. On Configure Target connection, select the compartment and select the Function. If prompted to create a policy for writing to functions, click Create.
 
 
+## Monitoring Functions and Service Connector
+
+Make sure you configure basic observability for your function and connector using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Service Connector](../basic-observability/service-connector-hub.md)
+
