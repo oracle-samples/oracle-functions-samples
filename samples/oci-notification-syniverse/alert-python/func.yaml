@@ -1,0 +1,14 @@
+schema_version: 20180708
+name: oci-alerts-to-syniverse-python
+version: 0.0.335
+runtime: python
+entrypoint: /python/bin/fdk /function/func.py handler
+memory: 256
+timeout: 120
+config:
+  SYNIVERSE_TOKEN: ocid1.vaultsecret.oc1.phx.xxxxxxxx
+  SYNIVERSE_HOST: https://api.syniverse.com/scg-external-api/api/v1/messaging/message_requests
+  SYNIVERSE_CHANNEL: <Syniverse-API-channel>
+  SYNIVERSE_NAMESPACE: <Your-object-storage-namespace>
+  SYNIVERSE_BUCKET_NAME: synivese_phone
+  SYNIVERSE_OBJECT_NAME: numbers.txt
