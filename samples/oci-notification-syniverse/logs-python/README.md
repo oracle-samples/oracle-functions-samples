@@ -80,7 +80,7 @@ You should see the SMS notifications sent by Syniverse.
 ## Monitoring Functions and Service Connector
 
 Make sure you configure basic observability for your function and connector using metrics, alarms and email alerts:
-* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
-* [Basic Guidance for Monitoring your Service Connector](../basic-observability/service-connector-hub.md)
+* [Basic Guidance for Monitoring your Functions](../../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Service Connector](../../basic-observability/service-connector-hub.md)
 
 
