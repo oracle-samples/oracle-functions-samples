@@ -28,9 +28,22 @@ def handler(ctx, data: io.BytesIO=None):
         object_name = os.environ['SYNIVERSE_OBJECT_NAME']
         phones = request_one_object(namespace, bucket_name, object_name)
 
+        signer = oci.auth.signers.get_resource_principals_signer()
+        secret_client = oci.secrets.SecretsClient(config={}, signer=signer)
+
+        secret_token = os.environ['SYNIVERSE_TOKEN']
+        response_token = read_secret_value(secret_client, secret_token)
+        response_host = os.environ['SYNIVERSE_HOST']
+        response_channel = os.environ['SYNIVERSE_CHANNEL']
+
+#       Syniverse endpoint URL and token to call the REST interface. This values are defined in functionalists.yaml
+        syniversehost = response_host
+        syniversetoken = "Bearer " + response_token
+        syniversechannel = "channel:" + response_channel
+
         logs = json.loads(data.getvalue())
-        body = "OCI SCH Notification: "
-        for item in logs: 
+        for item in logs:
+            body = "OCI SCH Notification: "
 #           get json type and time information
             if "source" in item:
                 body = body + item.get("source")
@@ -44,39 +57,27 @@ def handler(ctx, data: io.BytesIO=None):
                 body = body + "\nTenancy: " + item.get("oracle.tenantid")
 
             if "time" in item:
-                time_in_millis = item.get("timestampEpochMillis") / 1000.0
-                dt = datetime.datetime.fromtimestamp(time_in_millis).strftime('%Y-%m-%d %H:%M')
-                body = body + "\nTime: " + dt + "\n"
+                body = body + "\nTime: " + item.get("time")
 
-        signer = oci.auth.signers.get_resource_principals_signer()
-        secret_client = oci.secrets.SecretsClient(config={}, signer=signer)
+            payload = {}
+            payload.update({"from":syniversechannel})
+            payload.update({"to":phones.split(',')})
+            payload.update({"body":body})
 
-        secret_token = os.environ['SYNIVERSE_TOKEN']
-        response_token = read_secret_value(secret_client, secret_token)
-        response_host = os.environ['SYNIVERSE_HOST']
-        response_channel = os.environ['SYNIVERSE_CHANNEL'
+#           Call the Syniverse with the payload.
+            headers = {'Content-type': 'application/json', 'authorization': syniversetoken}
+            requests.post(syniversehost, data = json.dumps(payload), headers=headers, timeout=2)
 
-#       Syniverse endpoint URL and token to call the REST interface. This values are defined in functionalists.yaml
-        syniversehost = response_host
-        syniversetoken = "Bearer " + response_token
-        syniversechannel = "channel:" + response_channel
-
-        payload = {}
-        payload.update({"from":syniversechannel})
-        payload.update({"to":phones.split(',')})
-        payload.update({"body":body})
-
-#       Call the Syniverse with the payload.
-        headers = {'Content-type': 'application/json', 'authorization': syniversetoken}
-        x = requests.post(syniversehost, data = json.dumps(payload), headers=headers, timeout=2)
-
-       
     except (Exception, ValueError) as e:
         logging.error(e)
         return
 
 
-# Retrieve secret
+"""
+Retrieve values from Oracle vault
+This Function reads the Syniverse API token that is secrete storege in Oracle Vault.
+The oracle vault toke used to retriave the value is defined on func.yaml file
+"""
 def read_secret_value(secret_client, secret_id):
     response = secret_client.get_secret_bundle(secret_id)
     base64_Secret_content = response.data.secret_bundle_content.content
@@ -86,7 +87,11 @@ def read_secret_value(secret_client, secret_id):
     return secret_content
 
 
-# Read phone from Object Store
+"""
+Read file from Object Store.
+This Function reads the file with target phones to send the SMS. 
+The path and the file name is defined on func.yaml file
+"""
 def request_one_object(namespace, bucket_name, object_name):
     assert bucket_name and object_name
     signer = oci.auth.signers.get_resource_principals_signer()

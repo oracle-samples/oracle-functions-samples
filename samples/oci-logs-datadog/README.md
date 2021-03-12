@@ -68,11 +68,11 @@ In Cloud Shell, run the following `fn invoke` command to unit test this function
 
 ![user input icon](./images/userinput.png)
 ```
-fn invoke <app-name> <function-name> < test-logs.json
+fn invoke <app-name> <function-name> < test.json
 ```
 e.g., 
 ```
-fn invoke myapp oci-logs-to-datadog-python < test-logs.json
+fn invoke myapp oci-logs-to-datadog-python < test.json
 ```
 
 You should see the logs appear in Datadog.
