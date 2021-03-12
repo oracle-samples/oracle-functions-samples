@@ -6,7 +6,6 @@
 #
 
 import io
-import oci
 import os
 import json
 import requests
