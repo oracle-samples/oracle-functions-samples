@@ -269,3 +269,10 @@ Upon success, curl should return something similar to:
   "Deadline": "2020-06-23T17:59:10Z"
 }
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
