@@ -137,3 +137,10 @@ Upon success, the function returns a JSON object similar to this:
 ```json
 {"sql_statement": "select sysdate from dual", "result": "[(datetime.datetime(2020, 2, 27, 20, 19, 42),)]"}
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
