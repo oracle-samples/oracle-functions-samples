@@ -37,7 +37,7 @@ dynamic group to read any resources you are interested in receiving
 information about, in this case we will grant access to `functions-family` in
 the functions related compartment.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
@@ -87,3 +87,10 @@ You should see the following output:
 ```json
 {"message": "Hello World"}
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
