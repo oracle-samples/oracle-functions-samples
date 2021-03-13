@@ -8,7 +8,7 @@ The function calls the following OCI Python SDK classes:
 * [Resource Principals Signer](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/signing.html#resource-principals-signer) to authenticate
 * [Identity Client](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/identity/client/oci.identity.IdentityClient.html) to interact with Identity and Access Management
 
-As you make your way through this tutorial, look out for this icon ![user input icon](../images/userinput.png).
+As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
 
@@ -62,7 +62,7 @@ In Cloud Shell, run the `fn deploy` command to build the function and its depend
 push the image to the specified Docker registry, and deploy the function to Oracle Functions 
 in the application created earlier:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 fn -v deploy --app <app-name>
 ```
@@ -73,7 +73,7 @@ fn -v deploy --app myapp
 
 
 ## Test
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 fn invoke <app-name> <function-name>
 ```
@@ -82,3 +82,10 @@ e.g.
 fn invoke myapp oci-list-compartments-python
 ```
 You should see all the compartments in your tenancy listed in the terminal.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
