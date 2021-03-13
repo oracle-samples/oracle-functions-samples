@@ -124,7 +124,7 @@ Congratulations! You've just created, deployed, and invoked a Java HelloWorld fu
 
 
 
-### Appendix
+### Node, Golang, and Ruby
 
 In this example we used the provided files. However, you can also generate boilerplate HelloWorld function 
 files by running the following command from your terminal:
@@ -133,6 +133,11 @@ files by running the following command from your terminal:
 fn init --runtime <runtime-language> <func-name>
 ```
 
-where `<runtime-language>` is one of the supported runtime languages (currently java, python, node, go and ruby are 
-supported).
+where `<runtime-language>` is one of several runtime languages (currently java, python, node, go and ruby are 
+supported). Use `fn init --help` to see a list of boilertplate language runtimes.
 
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
