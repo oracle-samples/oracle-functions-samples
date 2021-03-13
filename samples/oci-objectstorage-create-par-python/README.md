@@ -62,7 +62,8 @@ fn -v deploy --app <app-name>
 
 ## Set the function configuration values
 The function requires the config value *bucket-name* and *lifetime* to be set.
-![user input icon](../images/userinput.png)
+
+![user input icon](./images/userinput.png)
 
 Use the *fn* CLI to set the config value:
 ```
@@ -89,3 +90,10 @@ echo '{"PAR name": "myPAR" }' | fn invoke myapp oci-objectstorage-create-par-pyt
 ```
 
 Upon success, the function returns the PAR URL.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
