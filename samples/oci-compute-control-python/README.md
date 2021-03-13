@@ -94,3 +94,11 @@ The supported values for `command` are "status", "start" and "stop".
 
 
 You should see the status of the instance returned by the function.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
+
