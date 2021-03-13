@@ -90,3 +90,10 @@ echo '{"topic_id": "ocid1.onstopic.xxxx", "msg_title": "a message from Functions
 ```
 
 Upon success, you should receive an email from the Notification Service.
+
+
+## Monitoring Functions and Notifications Topics
+
+Learn how to configure basic observability for your function and topic using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Notifications Topics](../basic-observability/notifications.md)
