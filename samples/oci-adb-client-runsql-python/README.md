@@ -100,7 +100,7 @@ The function requires several config value to be set.
 Use the *fn CLI* to set the config value:
 ```
 fn config function <app-name> <function-name> DBSVC <DB-service-name>
-fn config function <app-name> <function-name> DBUSR <DB-username>
+fn config function <app-name> <function-name> DBUSER <DB-username>
 fn config function <app-name> <function-name> DBPWD_CYPHER <DB-encrypted-password>
 ```
 Additionally, depending on where the DB wallet should be downloaded, specify either the bucket and object name, or the Autonomouns Database OCID:
@@ -115,7 +115,7 @@ fn config function <app-name> <function name> ADB_OCID <Autonomous-DB-OCID>
 e.g. with a DB wallet in a bucket:
 ```
 fn config function myapp oci-adb-client-runsql-python DBSVC "gregadw_high"
-fn config function myapp oci-adb-client-runsql-python DBUSR "admin"
+fn config function myapp oci-adb-client-runsql-python DBUSER "admin"
 fn config function myapp oci-adb-client-runsql-python DBPWD_CYPHER "dfgjksadhfg4526897dfgkj"
 fn config function myapp oci-adb-client-runsql-python DBWALLET_BUCKET "db-wallets"
 fn config function myapp oci-adb-client-runsql-python DBWALLET_OBJECT "Wallet_gregADW.zip"
