@@ -130,3 +130,11 @@ cat test-alarm.json | fn invoke myapp oci-ons-compute-shape-increase-python
 ```
 
 Now, the whole flow can be tested. Connect to an instance in the compartment where the alarm is active, and stress the memory utilization with the *stress* utility for example.
+
+
+## Monitoring Functions and Notifications Topics
+
+Learn how to configure basic observability for your function and topic using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+* [Basic Guidance for Monitoring your Notifications Topics](../basic-observability/notifications.md)
+

@@ -60,7 +60,7 @@ The function requires the following configuration values to be set:
 - smtp-host
 - smtp-port (25 or 587)
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -98,3 +98,10 @@ echo '{ "sender-email":"no-reply@oracle.com", "sender-name":"Test", "recipient":
 ```
 
 Upon success, the function will return "Email successfully sent!" and the recipient will receive an email.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+

@@ -259,3 +259,10 @@ echo '{"sql":"select * from emp"}' | fn invoke gregapp1 oci-adb-ords-runsql-pyth
   ]
 }
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+

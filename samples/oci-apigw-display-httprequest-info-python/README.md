@@ -82,7 +82,7 @@ For more information on how to create policies, check the [documentation](https:
 ## Set the function configuration values
 The function returns the configuration values you set.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -269,3 +269,10 @@ Upon success, curl should return something similar to:
   "Deadline": "2020-06-23T17:59:10Z"
 }
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+

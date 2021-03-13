@@ -176,3 +176,11 @@ You should receive the information from the HTTP request (or whatever back-end y
 Try sending a request with a non-matching key, or no key at all.
 
 The gateway will reject the request with an HTTP401.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
+

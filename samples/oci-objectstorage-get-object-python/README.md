@@ -106,3 +106,10 @@ e.g.
 echo -n '{"objectName": "<object-name>", "bucketName": "<bucket-name>"}' | fn invoke myapp oci-objectstorage-get-object-python
 ```
 You should see the contents of the object appear in the terminal.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+

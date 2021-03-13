@@ -8,7 +8,7 @@ The function calls the following OCI Java SDK classes:
 * [ResourcePrincipalAuthenticationDetailsProvider](https://docs.cloud.oracle.com/en-us/iaas/tools/java/latest/com/oracle/bmc/auth/ResourcePrincipalAuthenticationDetailsProvider.html) to authenticate
 * [ComputeClient](https://docs.cloud.oracle.com/iaas/tools/java/latest/com/oracle/bmc/core/ComputeClient.html) to interact with Compute
 
-As you make your way through this tutorial, look out for this icon ![user input icon](../images/userinput.png).
+As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
 
@@ -49,7 +49,7 @@ ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1.
 Create a new policy that allows the dynamic group to `inspect instances` in
 the functions related compartment.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
@@ -79,7 +79,7 @@ In Cloud Shell, run the *fn deploy* command to build the function and its depend
 push the image to the specified Docker registry, and deploy the function to Oracle Functions 
 in the application created earlier:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 fn -v deploy --app <app-name>
 ```
@@ -93,7 +93,7 @@ fn -v deploy --app myapp
 
 Use the *fn* CLI to invoke your function with your app name and the compartment OCID:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 echo -n '<compartment-ocid>' | fn invoke <app-name> <function-name>
 ```
@@ -103,3 +103,10 @@ echo -n 'ocid1.compartment.oc1...2jn3htfoobar' | fn invoke myapp oci-list-instan
 ```
 You should see a map of instances in your compartment appear on your terminal.
 Key is the OCID of the instance and value is a String representation of the Instance object.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+

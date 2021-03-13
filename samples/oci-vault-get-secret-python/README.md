@@ -88,7 +88,7 @@ The function requires the following configuration values to be set:
 - secret_ocid
 - secret_type, the value should be either "text" or "binary"
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -123,3 +123,9 @@ If the secret is binary data and you set the function configuration key "secret_
 ```
 {'secret md5': 'a4269244e2eca44200bc04f83e0e4df0'}
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)

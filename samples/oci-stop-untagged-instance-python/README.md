@@ -99,3 +99,7 @@ To create a new cloud event rule, click on Application Integration -> Events Ser
   ![launch instance stop ](./images/launch_instance_stopped.png)
 
   
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)

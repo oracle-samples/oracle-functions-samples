@@ -42,7 +42,7 @@ fn -v deploy --app <app-name>
 The function requires the following configuration values to be set:
 - FN_API_KEY
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -127,3 +127,11 @@ You should receive the information from the HTTP request (or whatever back-end y
 Try sending a request with a non-matching key, or no key at all.
 
 The gateway will reject the request with an HTTP401
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
+

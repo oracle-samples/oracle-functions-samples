@@ -118,7 +118,14 @@ You should see the following output:
 {"width": 3, "height": 3}
 ```
 
-# Conclusion
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
+
+## Conclusion
 One of the most powerful features of Fn and Oracle Functions is the ability to
 use custom-defined Docker container images as functions. This feature makes it
 possible to customize your function's runtime environment including letting you
