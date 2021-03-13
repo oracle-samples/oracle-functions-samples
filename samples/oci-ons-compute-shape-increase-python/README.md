@@ -134,7 +134,7 @@ Now, the whole flow can be tested. Connect to an instance in the compartment whe
 
 ## Monitoring Functions and Notifications Topics
 
-Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+Learn how to configure basic observability for your function and topic using metrics, alarms and email alerts:
 * [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
 * [Basic Guidance for Monitoring your Notifications Topics](../basic-observability/notifications.md)
 
