@@ -94,7 +94,7 @@ The function requires the following configuration values to be set:
 - key_ocid
 - cryptographic_endpoint
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -122,3 +122,9 @@ echo '{"cipher": "Ia+hS8+UYAEV8gr00ItHxsC1jhfslbzAA="}' | fn invoke myapp oci-va
 
 Upon success, the function should return the decrypted text:
 {"decryptedtext": "my text"}
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
