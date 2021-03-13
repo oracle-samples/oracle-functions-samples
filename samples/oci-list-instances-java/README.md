@@ -93,7 +93,7 @@ fn -v deploy --app myapp
 
 Use the *fn* CLI to invoke your function with your app name and the compartment OCID:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 echo -n '<compartment-ocid>' | fn invoke <app-name> <function-name>
 ```
