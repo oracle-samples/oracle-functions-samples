@@ -127,3 +127,10 @@ In the mapper connecting to the REST adapter connection, the data in the source 
 ![Payload Mapping on OIC](./images/function-payload.png)
 
 An example of how this invocation is done from OIC can be found in this [documentation](https://docs.oracle.com/en/cloud/paas/integration-cloud/rest-adapter/configure-rest-adapter-consume-oracle-functions.html).
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
