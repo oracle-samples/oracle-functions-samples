@@ -42,7 +42,7 @@ fn -v deploy --app <app-name>
 The function requires the following configuration values to be set:
 - FN_API_KEY
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
