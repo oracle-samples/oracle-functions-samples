@@ -60,7 +60,7 @@ The function requires the following configuration values to be set:
 - smtp-host
 - smtp-port (25 or 587)
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
