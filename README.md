@@ -39,20 +39,20 @@ This repository provides examples demonstrating how to use Oracle Functions.
 ## Use Cases
 | Description                                          | Code | Blog/Docs |
 |------------------------------------------------------|:------:|:----:|
-| Provide the size of an image (Custom Dockerfile, image library) | [repo](./samples/imagedims-python)|
-| Automatically load data from Object Storage into Autonomous DataWarehouse | [repo](./samples/oci-load-file-into-adw-python)|
-| Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [repo](./samples/oci-ons-compute-shape-increase-python)|
-| Check if a compute instance is tagged correctly on provisioning, if not, stop it | [repo](./samples/oci-stop-untagged-instance-python)|
-| Move logs from OCI to Datadog using Logging, Service Connector Hub and Functions | [repo](./samples/oci-logs-datadog)|
-| Send SMS messages for logs using Logging, Service Connector Hub, Functions and Syniverse SMS | [repo](./samples/oci-notification-syniverse)|
-| Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [repo](./samples/oci-notification-syniverse)|
+| Provide the size of an image (Custom Dockerfile, image library) | [sample](./samples/imagedims-python)|
+| Automatically load data from Object Storage into Autonomous DataWarehouse | [sample](./samples/oci-load-file-into-adw-python)|
+| Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [sample](./samples/oci-ons-compute-shape-increase-python)|
+| Check if a compute instance is tagged correctly on provisioning, if not, stop it | [sample](./samples/oci-stop-untagged-instance-python)|
+| Move logs from OCI to Datadog using Logging, Service Connector Hub and Functions | [sample](./samples/oci-logs-datadog)|
+| Send SMS messages for logs using Logging, Service Connector Hub, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse)|
+| Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse)|
 
 
 ## Community-led Examples
 | Description                                          | Code | Blog |
 |------------------------------------------------------|:------:|:----:|
 | Serverless SaaS Extensions using Oracle Functions, API Gateway and VBCS | [repo](https://github.com/oracle/cloud-asset-fusion-serverless-vbcs-sample) | [blog](https://www.ateam-oracle.com/the-cloud-native-approach-to-extending-your-saas-applications)
-| Function that demonstrates connectivity between Oracle SaaS applications with OIC | [repo](./samples/oci-oic-hcm-object-upload)|
+| Function that demonstrates connectivity between Oracle SaaS applications with OIC | [sample](./samples/oci-oic-hcm-object-upload)|
 
 ## Documentation
 
