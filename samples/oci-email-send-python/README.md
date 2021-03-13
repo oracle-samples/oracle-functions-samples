@@ -98,3 +98,10 @@ echo '{ "sender-email":"no-reply@oracle.com", "sender-name":"Test", "recipient":
 ```
 
 Upon success, the function will return "Email successfully sent!" and the recipient will receive an email.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
