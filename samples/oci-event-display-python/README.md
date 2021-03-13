@@ -90,3 +90,10 @@ Full Cloud event json data:
     }
 }
 ```
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
