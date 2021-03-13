@@ -95,7 +95,7 @@ For more information on how to create policies, check the [documentation](https:
 ## Set the function configuration values
 The function requires several config value to be set.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
