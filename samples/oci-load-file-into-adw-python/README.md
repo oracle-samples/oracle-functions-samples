@@ -130,7 +130,7 @@ fn -v deploy --app <app-name>
 ## Set the function configuration values
 The function requires several configuration variables to be set.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn CLI* to set the config value:
 ```
@@ -184,3 +184,10 @@ Enter the following query in the *worksheet* of *SQL Developer Web*:
 select UTL_RAW.CAST_TO_VARCHAR2( DBMS_LOB.SUBSTR( JSON_DOCUMENT, 4000, 1 )) AS json from regionsnumbers
 ```
 You should see the data from the CSV files.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
