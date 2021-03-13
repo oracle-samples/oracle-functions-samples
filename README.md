@@ -7,6 +7,11 @@ This repository provides examples demonstrating how to use Oracle Functions.
 ## Setup
 * [Quick start](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
 
+## Basic Observability Guidance
+* [Functions](./samples/basic-observability/functions.md)
+* [Service Connector Hub](./samples/basic-observability/service-connector-hub.md)
+* [Notifications Service](./samples/basic-observability/notifications.md)
+
 ## How To
 | Description                                          | Python | Java | 
 |------------------------------------------------------|:------:|:----:|
@@ -32,12 +37,16 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 
 ## Use Cases
-| Description                                          | Code | Docs |
+| Description                                          | Code | Blog/Docs |
 |------------------------------------------------------|:------:|:----:|
 | Provide the size of an image (Custom Dockerfile, image library) | [repo](./samples/imagedims-python)|
 | Automatically load data from Object Storage into Autonomous DataWarehouse | [repo](./samples/oci-load-file-into-adw-python)|
 | Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [repo](./samples/oci-ons-compute-shape-increase-python)|
 | Check if a compute instance is tagged correctly on provisioning, if not, stop it | [repo](./samples/oci-stop-untagged-instance-python)|
+| Move logs from OCI to Datadog using Logging, Service Connector Hub and Functions | [repo](./samples/oci-logs-datadog)|
+| Send SMS messages for logs using Logging, Service Connector Hub, Functions and Syniverse SMS | [repo](./samples/oci-notification-syniverse)|
+| Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [repo](./samples/oci-notification-syniverse)|
+
 
 ## Community-led Examples
 | Description                                          | Code | Blog |
