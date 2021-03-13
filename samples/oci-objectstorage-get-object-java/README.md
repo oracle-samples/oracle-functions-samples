@@ -8,7 +8,7 @@ The function calls the following OCI Java SDK classes:
 * [ResourcePrincipalAuthenticationDetailsProvider](https://docs.cloud.oracle.com/en-us/iaas/tools/java/latest/com/oracle/bmc/auth/ResourcePrincipalAuthenticationDetailsProvider.html) to authenticate
 * [ObjectStorageClient](https://docs.cloud.oracle.com/iaas/tools/java/latest/com/oracle/bmc/objectstorage/ObjectStorageClient.html) to interact with Object Storage
 
-As you make your way through this tutorial, look out for this icon ![user input icon](../images/userinput.png).
+As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
 
 
@@ -53,7 +53,7 @@ ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1.
 Create a new policy that allows the dynamic group to `read objects` in
 the functions related compartment.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
@@ -81,7 +81,7 @@ In Cloud Shell, run the *fn deploy* command to build the function and its depend
 push the image to the specified Docker registry, and deploy the function to Oracle Functions 
 in the application created earlier:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 ```
 fn -v deploy --app <app-name>
@@ -96,7 +96,7 @@ fn -v deploy --app myapp
 
 The function requires the config value *NAMESPACE* to be set.
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 
 Use the *fn* CLI to set the config value at the application level (if multiple functions need the same config value):
 
@@ -115,7 +115,7 @@ Note that the config value can also be set at the function level.
 
 Use the *fn* CLI to invoke your function with your own object name, bucket name and app name:
 
-![user input icon](../images/userinput.png)
+![user input icon](./images/userinput.png)
 ```
 echo -n '{"name": "<object-name>", "bucketName":"<bucket-name>"}' | fn invoke <app-name> <function-name>
 ```
@@ -124,3 +124,10 @@ e.g.
 echo -n '{"name": "file1.txt", "bucketName":"mybucket"}' | fn invoke myapp oci-objectstorage-get-object-java
 ```
 You should see the contents of the object appear in the terminal.
+
+
+## Monitoring Functions
+
+Learn how to configure basic observability for your function using metrics, alarms and email alerts:
+* [Basic Guidance for Monitoring your Functions](../basic-observability/functions.md)
+
