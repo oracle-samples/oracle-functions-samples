@@ -42,6 +42,6 @@ and will need to click on the link in the email to confirm your email address.
 
 3. On **Metric description** select the compartment **your_compartment**, select **Metric namespace** as oci_faas, **Metric name** as FunctionResponseCount, **Interval** as 1m, and **Statistic** as Mean
 
-4. On **Trigger rule** select Value greater than 1
+4. On **Trigger rule** select Value greater or equal than 1
 
 6. On **Notification** select **Destination service** as notification service, select the compartment **your_compartment**, and select **Topic** as my_function_status
