@@ -1,6 +1,6 @@
-# Function that invoke another function
+# Function that invoke another function using the OCI Python SDK
 
-This function invokes another function.
+This function invokes another function using the OCI Python SDK and the Functions Resource Principal.
 
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
@@ -33,15 +33,15 @@ Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Run
 
 ## Create or Update IAM Policies
 Now that your dynamic group is created, create a new policy that allows the
-dynamic group to read any resources you are interested in receiving
-information about, in this case we will grant access to `functions-family` in
+dynamic group to use any resources you are interested in receiving
+information about, in this case we will grant access to `invoke functions` in
 the functions related compartment.
 
 ![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <dynamic-group-name> to use functions-family in compartment <compartment-name>
+Allow dynamic-group <dynamic-group-name> to use fn-invocation in compartment <compartment-name>
 ```
 
 For more information on how to create policies, check the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
@@ -65,25 +65,27 @@ fn -v deploy --app <app-name>
 
 
 ## Invoke the function
-To test the function, we need another function to invoke. If you do not have any, create a HelloWorld function for example and get its OCID and endpoint.
+
+The function requires the following keys in the payload when invoked:
+- function_ocid, the OCID `ocid1.fnfunc.oc1.phx.aaaxxx` of the other function we are calling (HelloWorld for example) 
+- function_endpoint, the endpoint `https://xxxxxx.us-phoenix-1.functions.oci.oraclecloud.com` of the other function
+- function_body, the body for the invocation of the other function
+
+To test the function, we need another function to invoke. If you do not have any, create a 
+HelloWorld function for example and get its OCID and endpoint and add it to the [test.json](./test.json) file.
 
 ![functions information](./images/function-information.png)
 
-The function requires the following keys in the payload to be invoked:
-- function_ocid, the OCID of the other function we are calling (HelloWorld for example)
-- function_endpoint, the endpoint of the other function
-- function_body, the body for the invocation of the other function
-
 ![user input icon](./images/userinput.png)
 ```
-echo '{ "function_ocid":"<function-OCID>", "function_endpoint":"<function-endpoint>", "function_body":"<function-body>" }' | fn invoke <app-name> oci-invoke-function-python
+fn invoke <app-name> oci-invoke-function-python < test.json
 ```
 e.g.:
 ```
-echo '{ "function_ocid":"ocid1.fnfunc.oc1.phx.aaaaaxxxxxxx", "function_endpoint":"https://xxxxxx.us-phoenix-1.functions.oci.oraclecloud.com", "function_body":"" }' | fn invoke myapp oci-invoke-function-python
+fn invoke myapp oci-invoke-function-python < test.json
 ```
 
-You should see the following output:
+Assuming the other function we are calling is a HelloWorld function, you should see the following output :
 ```json
 {"message": "Hello World"}
 ```

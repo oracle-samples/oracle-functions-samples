@@ -24,7 +24,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Create an object in OCI Object Storage               |[sample](./samples/oci-objectstorage-put-object-python)|[sample](./samples/oci-objectstorage-put-object-java)|
 | Create a PAR in OCI Object Storage                   |[sample](./samples/oci-objectstorage-create-par-python)||
 | Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)|
-| Invoke another Function                              |[sample](./samples/oci-invoke-function-python)|||
+| Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)|||
 | Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) | 
 | Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| 
 | Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
