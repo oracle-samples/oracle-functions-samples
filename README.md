@@ -35,17 +35,29 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Function that returns the API Gateway HTTP request information |[sample](./samples/oci-apigw-display-httprequest-info-python)
 | Function for API Gateway that validates an API key   |[sample](./samples/oci-apigw-apikey-validation-python)
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
+| Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 
-## Use Cases
-| Description                                          | Code | Blog/Docs |
-|------------------------------------------------------|:------:|:----:|
-| Provide the size of an image (Custom Dockerfile, image library) | [sample](./samples/imagedims-python)|
-| Automatically load data from Object Storage into Autonomous DataWarehouse | [sample](./samples/oci-load-file-into-adw-python)|
-| Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [sample](./samples/oci-ons-compute-shape-increase-python)|
-| Check if a compute instance is tagged correctly on provisioning, if not, stop it | [sample](./samples/oci-stop-untagged-instance-python)|
-| Move logs from OCI to Datadog using Logging, Service Connector Hub and Functions | [sample](./samples/oci-logs-datadog)|
-| Send SMS messages for logs using Logging, Service Connector Hub, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse)|
-| Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse)|
+
+## Using Service Connector Hub with Functions
+| Description                                          | Code |
+|------------------------------------------------------|:------:|
+| _**Logging >> Service Connector Hub >> Functions**_ | |
+| Move logs from OCI to Datadog using Service Connector Hub, Logging (Source), Functions (Target) and Datadog | [sample](./samples/oci-logs-datadog) |
+| Send SMS messages for logs using Service Connector Hub, Logging (Source), Functions (Target) and Syniverse SMS | [sample](./samples/oci-notification-syniverse) |
+| | |
+| _**Streaming >> Service Connector Hub >> Functions**_ | |
+| Convert JSON to CSV format using Service Connector Hub, Streams (Source and Target) and Functions (Task) | [sample](./samples/oci-serviceconnector-streaming-json-to-csv-python) |
+| Convert JSON to Parquet format using Service Connector Hub, Streams (Source and Target) and Functions (Task) | [sample](./samples/oci-serviceconnector-streaming-json-to-parquet-python) |
+
+
+## Other Use Cases
+| Description                                          | Code |
+|------------------------------------------------------|:------:|
+| Provide the size of an image (Custom Dockerfile, image library) | [sample](./samples/imagedims-python) |
+| Automatically load data from Object Storage into Autonomous DataWarehouse | [sample](./samples/oci-load-file-into-adw-python) |
+| Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [sample](./samples/oci-ons-compute-shape-increase-python) |
+| Check if a compute instance is tagged correctly on provisioning, if not, stop it | [sample](./samples/oci-stop-untagged-instance-python) |
+| Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse) |
 
 
 ## Community-led Examples
