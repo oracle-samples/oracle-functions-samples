@@ -60,7 +60,7 @@ fn invoke <app-name> <function-name>
 ```
 e.g., 
 ```
-fn invoke myapp apm-fn-python
+fn invoke myapp apm-fn-int-python
 ```
 
 You should see your function traces in the APM Trace Explorer.
