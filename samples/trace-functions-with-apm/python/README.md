@@ -1,6 +1,6 @@
 ## Tracing Python Functions with APM Tracing and Zipkin
 
-_**Contributed by: Isaac Lipszyc**_
+_**Contributed by: [Isaac Lipszyc](https://github.com/isaaclipszyc)**_
 
 This sample shows how you can trace your Python function code with APM Tracing and Zipkin.
 
