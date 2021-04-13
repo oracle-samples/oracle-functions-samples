@@ -1,0 +1,11 @@
+schema_version: 20180708
+name: oci-sch-stream-json-to-parquet-python
+version: 0.0.66
+runtime: python
+entrypoint: /python/bin/fdk /function/func.py handler
+memory: 256
+timeout: 300
+config:
+  BUCKET_NAME: <bucket name>
+  FILE_NAME: <your file name>
+  NAME_SPACE: <enter your namespace>
