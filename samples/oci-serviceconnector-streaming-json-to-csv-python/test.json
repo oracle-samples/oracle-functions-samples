@@ -1,0 +1,1 @@
+[{"stream": "mynewstream","partition": "0","key": null,"value": "eyJuYW1lIjoiaWdvciIsICJsb2NhdGlvbiI6ICJEdWJsaW4ifQ==","offset": 0,"timestamp": "2018-04-26T01:03:06.051Z"},{"stream": "mynewstream","partition": "0","key": null,"value": "eyJuYW1lIjoiYnJpYW4iLCJmaWVsZDEiOiJ0ZXN0In0=","offset": 0,"timestamp": "2018-04-26T01:03:06.051Z"}]
