@@ -566,10 +566,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
+
 --------------------------------------------------------------------------------
 
 pyarrow
 License: Apache License 2.0, a copy of the license is included at the end of this file.
+
+
+--------------------------------------------------------------------------------
+
+py_zipkin
+Copyright (c) 2018, Yelp, Inc. All Rights reserved. Apache v2
+License: Apache License 2.0, a copy of the license is included at the end of this file.
+
+
+--------------------------------------------------------------------------------
+
+
 
 ================================================================================
                                  Apache License
