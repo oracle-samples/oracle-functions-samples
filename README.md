@@ -38,6 +38,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 
 
+
 ## Using Service Connector Hub with Functions
 | Description                                          | Code |
 |------------------------------------------------------|:------:|
@@ -58,6 +59,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Automatically resize VM on High Memory Alerts (Notifications trigger a function) | [sample](./samples/oci-ons-compute-shape-increase-python) |
 | Check if a compute instance is tagged correctly on provisioning, if not, stop it | [sample](./samples/oci-stop-untagged-instance-python) |
 | Send SMS messages for monitoring alarms using Monitoring, Notifications Service, Functions and Syniverse SMS | [sample](./samples/oci-notification-syniverse) |
+| Export a collection of historical metrics from Monitoring Service using the Monitoring Query Language (MQL)  | [sample](./samples/oci-monitoring-metric-export-python) |
 
 
 ## Community-led Examples
