@@ -2,7 +2,7 @@
 
 This sample Python function demonstrates how to submit a Monitoring Query Language (MQL) query to OCI Monitoring Service which will extract a collection of historical metrics and then push this package to Object Storage as a json file.  
 
-![Export Process](./images/Export-Function.png)
+![Export Process](./images/Export-Function.1.png)
 
 This sample is intended to help you get up and running quickly by using default values for most parameters.  In fact, there is only one required parameter:  **compartmentId** --> this specifies the Object Storage Compartment to create the storage bucket (if it does not already exist).  Supply values for optional parameters to select target resources, specific metrics to collect, define time ranges, etc., per your requirements.  Advanced users may also replace the export function within the code to push metrics to your downstream application api.
 

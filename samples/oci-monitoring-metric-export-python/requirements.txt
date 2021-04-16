@@ -1,3 +1,2 @@
 fdk
-requests
 oci

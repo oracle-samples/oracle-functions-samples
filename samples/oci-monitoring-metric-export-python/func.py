@@ -5,16 +5,12 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 #
 
-
 import io
 import oci
-import requests
 import logging
 import json
 from datetime import datetime, timedelta
 from fdk import response
-
-
 
 """
 Create Object Storage bucket 'metrics-export' in the specified Compartent, if it does not already exist.
@@ -51,7 +47,7 @@ def deleteObjectIfExists(_source_namespace, _bucketname, _objectname, _object_st
         raise
 
 """
-Perform api call to pull metrics
+Perform api call to pull metrics from Monitoring Service
 """
 def export_metrics(monitoring_client, _compartmentId, _namespace, _resource_group, _query, _startdtm, _enddtm, _resolution, logger):        
     try:
@@ -74,7 +70,7 @@ def export_metrics(monitoring_client, _compartmentId, _namespace, _resource_grou
         logger.error("Error in export_metrics(): {}".format(str(e)))
         raise
 """
-Upload (put) metrics json file to bucket 'metrics-export'
+Upload (put) metrics json file to bucket
 """
 def putObject(_source_namespace, _bucketname, _objectname, _content, _object_storage_client, logger):
     try:
@@ -99,55 +95,53 @@ def handler(ctx, data: io.BytesIO=None):
     # Retrieve the Function configuration values
     # Parse input parameters and assign default values as needed
     try:
-        cfg = dict(ctx.Config())
-        try:
-            _compartmentId = cfg["compartmentId"]
-        except Exception as e:
+        body = json.loads(data.getvalue())
+        _compartmentId = body.get("compartmentId")
+        if (_compartmentId == None):
             logger.error('Mandatory key compartmentId not defined')
             raise
 
-        try:
-            _namespace = cfg["namespace"]
-        except:
+        _namespace = body.get("namespace")
+        if (_namespace == None):
             logger.info('Optional configuration key namespace unavailable.  Will assign default value')
             _namespace = "oci_computeagent"                    
 
-        try:
-            _resource_group = cfg["resource_group"]
-        except:
+        _resource_group = body.get("resource_group")
+        if (_resource_group == None):
             logger.info('Optional configuration key resource_group unavailable.  Will assign default value') 
             _resource_group = ""       
-
-        try:    
-            _query = cfg["query"]
-        except:
+  
+        _query = body.get("query")
+        if (_query == None):
             logger.info('Optional configuration key query unavailable.  Will assign default value')
             _query = "CpuUtilization[1m].mean()"
-
-        try:    
-            _startdtm = cfg["startdtm"]
-        except:
+    
+        _startdtm = body.get("startdtm")
+        if (_startdtm == None):
             logger.info('Optional configuration key startdtm unavailable.  Will assign default value')        
             _startdtm = (datetime.now() + timedelta(hours=-1)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
-        try:
-            _enddtm = cfg["enddtm"]
-        except:
+        _enddtm = body.get("enddtm")
+        if (_enddtm == None):
             logger.info('Optional configuration key enddtm unavailable.  Will assign default value')
             _enddtm = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
-        try:
-            _resolution = cfg["resolution"]
-        except:
+        _resolution = body.get("resolution")
+        if (_resolution == None):
             logger.info('Optional configuration key resolution unavailable.  Will assign default value')
             _resolution = "1m"
     
-
+        # Default Object Storage bucket name.  Update as required, following name format restrictions
+        # See the following link for guidelines:
+        # https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/managingbuckets.htm#bucketnames
         bucketname = "metrics-export"
+ 
+        # Will use query end timestamp for insertion into filename
         dt_string =  _enddtm
 
-        if (_resource_group.strip()):
-            objectname = _namespace + "-" + _resource_group + "-" + dt_string[0:19]  + ".json"
+        # Generate objectname [filename]
+        if (_resource_group):
+            objectname = _namespace + "-" + _resource_group.strip() + "-" + dt_string[0:19]  + ".json"
         else:
             objectname = _namespace + "-" + dt_string[0:19] + ".json"
 
