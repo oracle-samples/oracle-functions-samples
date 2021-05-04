@@ -5,24 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fdk.version>1.0.108</fdk.version>
+        <fdk.version>1.0.130</fdk.version>
     </properties>
     <groupId>com.example.fn</groupId>
     <artifactId>hello</artifactId>
     <version>1.0.0</version>
-
-    <repositories>
-        <repository>
-            <id>fn-release-repo</id>
-            <url>https://dl.bintray.com/fnproject/fnproject</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -45,7 +32,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 

@@ -2,6 +2,6 @@ schema_version: 20180708
 name: hello-java
 version: 0.0.2
 runtime: java
-build_image: fnproject/fn-java-fdk-build:jdk11-1.0.105
-run_image: fnproject/fn-java-fdk:jre11-1.0.105
+build_image: fnproject/fn-java-fdk-build:jdk11-1.0.130
+run_image: fnproject/fn-java-fdk:jre11-1.0.130
 cmd: com.example.fn.HelloFunction::handleRequest

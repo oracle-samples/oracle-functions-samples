@@ -2,7 +2,7 @@ schema_version: 20180708
 name: oci-objectstorage-list-objects-java
 version: 0.0.1
 runtime: java
-build_image: fnproject/fn-java-fdk-build:jdk11-1.0.108
-run_image: fnproject/fn-java-fdk:jre11-1.0.108
+build_image: fnproject/fn-java-fdk-build:jdk11-1.0.130
+run_image: fnproject/fn-java-fdk:jre11-1.0.130
 cmd: com.example.fn.ObjectStorageListObjects::handleRequest
 timeout: 120
