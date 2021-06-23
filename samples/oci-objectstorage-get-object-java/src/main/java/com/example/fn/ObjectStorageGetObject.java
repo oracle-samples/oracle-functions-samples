@@ -18,11 +18,12 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 public class ObjectStorageGetObject {
-
+    
+    //defining the resource principal signer
     private ObjectStorage objStoreClient = null;
     final ResourcePrincipalAuthenticationDetailsProvider provider
             = ResourcePrincipalAuthenticationDetailsProvider.builder().build();
-
+    //get the client
     public ObjectStorageGetObject() {
 
         try {
@@ -31,14 +32,15 @@ public class ObjectStorageGetObject {
             System.err.println("OCI_RESOURCE_PRINCIPAL_REGION " + System.getenv("OCI_RESOURCE_PRINCIPAL_REGION"));
             System.err.println("OCI_RESOURCE_PRINCIPAL_RPST " + System.getenv("OCI_RESOURCE_PRINCIPAL_RPST"));
             System.err.println("OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM " + System.getenv("OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM"));
-
+            //it is using err for no reason as it is printing the main values not errors
+            //create a objectstorage client
             objStoreClient = new ObjectStorageClient(provider);
 
         } catch (Throwable ex) {
             System.err.println("Failed to instantiate ObjectStorage client - " + ex.getMessage());
         }
     }
-
+    //get the object info or change it by passing custom parameters, how I don't know
     public static class GetObjectInfo {
 
         private String bucketName;
@@ -73,15 +75,16 @@ public class ObjectStorageGetObject {
         try {
 
             String nameSpace = System.getenv().get("NAMESPACE");
-
+            //I dont know what it is doing here, like getobject request
             GetObjectRequest gor = GetObjectRequest.builder()
                     .namespaceName(nameSpace)
                     .bucketName(objectInfo.getBucketName())
                     .objectName(objectInfo.getName())
                     .build();
             System.err.println("Getting content for object " + objectInfo.getName() + " from bucket " + objectInfo.getBucketName());
-
+            //get object with the help of request and client
             GetObjectResponse response = objStoreClient.getObject(gor);
+            //result loaded to memory
             result = new BufferedReader(new InputStreamReader(response.getInputStream()))
                     .lines().collect(Collectors.joining("\n"));
 
