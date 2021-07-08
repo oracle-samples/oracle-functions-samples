@@ -49,7 +49,10 @@ Create the two buckets, for example "input-bucket" and "processed-bucket". Check
 
 
 ## Create or Update IAM Policies
-Create a new policy that allows the dynamic group to manage objects in your two buckets.
+Create a new policy that allows the dynamic group to manage objects in your two buckets. 
+
+Also, create a policy to allow the Object Storage service in the region to manage object-family in tenancy. This policy is needed to copy/move objects from the input-bucket to the processed-bucket. If you miss this policy, you will see this error message when you run the function: `Permissions granted to the object storage service principal to this bucket are insufficient`. For more information, see [Object Storage - Service Permissions](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/copyingobjects.htm#Service).
+
 
 ![user input icon](./images/userinput.png)
 
@@ -57,7 +60,12 @@ Your policy should look something like this:
 ```
 Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<input-bucket-name>
 Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<processed-bucket-name>
+
+Allow service objectstorage-<region_identifier> to manage object-family in tenancy 
+e.g., Allow service objectstorage-ap-sydney-1 to manage object-family in tenancy
 ```
+To determine the region identifier value of an Oracle Cloud Infrastructure region, see [Regions and Availability Domains](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#top). 
+
 For more information on how to create policies, check the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
 
@@ -181,9 +189,12 @@ Upload one or all CSV files from the current folder to your *input bucket*. Let'
 On the OCI console, navigate to *Autonomous Data Warehouse* and click on your database, click on *Service Console*, navigate to Development, and click on *SQL Developer Web*. Authenticate with your ADMIN username and password.
 Enter the following query in the *worksheet* of *SQL Developer Web*:
 ```sql
-select UTL_RAW.CAST_TO_VARCHAR2( DBMS_LOB.SUBSTR( JSON_DOCUMENT, 4000, 1 )) AS json from regionsnumbers
+select json_serialize (
+         json_data returning varchar2 pretty 
+       ) 
+from regionsnumbers;
 ```
-You should see the data from the CSV files.
+You should see the data from the CSV files. To learn more about JSON in Oracle Database, refer to Chris Saxon's blog [How to Store, Query, and Create JSON Documents in Oracle Database](https://blogs.oracle.com/sql/how-to-store-query-and-create-json-documents-in-oracle-database)
 
 
 ## Monitoring Functions
