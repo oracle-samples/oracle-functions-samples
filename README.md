@@ -5,7 +5,7 @@
 This repository provides examples demonstrating how to use Oracle Functions.
 
 ## Setup
-* [Quick start](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
+* [Quick start](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm)
 
 ## Basic Observability Guidance
 * [Functions](./samples/basic-observability/functions.md)
