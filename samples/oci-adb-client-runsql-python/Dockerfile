@@ -17,6 +17,7 @@ RUN chown -R fn:fn /tmp/dbwallet
 ENV TNS_ADMIN=/tmp/dbwallet
 
 ADD . /function/
+RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache --no-cache-dir -r requirements.txt
 RUN rm -fr /function/.pip_cache ~/.cache/pip requirements.txt func.yaml Dockerfile README.md
 
