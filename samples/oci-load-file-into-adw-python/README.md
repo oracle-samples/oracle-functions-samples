@@ -1,4 +1,9 @@
 # Automatically load data from Object Storage into Autonomous Data Warehouse
+
+Note: We also have a public LiveLab based on this sample. The LiveLab has more detailed steps and screenshots.
+See [Event-driven Functions with Autonomous Data Warehouse (ADW) hands-on lab | Adao Junior | August 2021](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=849).
+
+## Introduction
 We often have to extract data from various databases or applications and load it into a Data Warehouse to get analysed. 
 You can automate this process on OCI using Cloud Storage, Cloud Events, Functions and Autonomous Data Warehouse.
 
@@ -43,7 +48,7 @@ You need two buckets in Object Storage. The first bucket is the location where y
 
 ![user input icon](./images/userinput.png)
 
-Create the two buckets, for example "input-bucket" and "processed-bucket". Check the *Emit Object Events* box for the first bucket (for input).
+Create the two buckets: "input-bucket" and "processed-bucket". Check the *Emit Object Events* box for the "input-bucket" bucket.
 
 ![create bucket](./images/create-bucket.png)
 
@@ -58,8 +63,9 @@ Also, create a policy to allow the Object Storage service in the region to manag
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<input-bucket-name>
-Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name=<processed-bucket-name>
+Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name='input-bucket'
+
+Allow dynamic-group <dynamic-group-name> to manage objects in compartment <compartment-name> where target.bucket.name='processed-bucket'
 
 Allow service objectstorage-<region_identifier> to manage object-family in tenancy 
 e.g., Allow service objectstorage-ap-sydney-1 to manage object-family in tenancy
@@ -189,10 +195,8 @@ Upload one or all CSV files from the current folder to your *input bucket*. Let'
 On the OCI console, navigate to *Autonomous Data Warehouse* and click on your database, click on *Service Console*, navigate to Development, and click on *SQL Developer Web*. Authenticate with your ADMIN username and password.
 Enter the following query in the *worksheet* of *SQL Developer Web*:
 ```sql
-select json_serialize (
-         json_data returning varchar2 pretty 
-       ) 
-from regionsnumbers;
+select json_serialize (JSON_DOCUMENT) from regionsnumbers;
+
 ```
 You should see the data from the CSV files. To learn more about JSON in Oracle Database, refer to Chris Saxon's blog [How to Store, Query, and Create JSON Documents in Oracle Database](https://blogs.oracle.com/sql/how-to-store-query-and-create-json-documents-in-oracle-database)
 
