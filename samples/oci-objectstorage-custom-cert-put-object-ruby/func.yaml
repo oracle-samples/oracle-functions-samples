@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: oci-objectstorage-custom-cert-put-object-ruby
+version: 0.0.1
+runtime: ruby
+build_image: fnproject/ruby:2.7-dev
+run_image: fnproject/ruby:2.7
+entrypoint: ruby func.rb
+memory: 512

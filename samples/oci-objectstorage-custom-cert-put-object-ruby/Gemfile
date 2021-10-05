@@ -1,0 +1,4 @@
+source 'https://www.rubygems.org' do
+  gem 'fdk', '>= 0.0.26'
+  gem 'oci', '= 2.12.0'
+end
