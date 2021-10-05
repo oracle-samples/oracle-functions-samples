@@ -1,0 +1,7 @@
+schema_version: 20180708
+name: oci-objectstorage-custom-cert-put-object-python
+version: 0.0.1
+runtime: python
+build_image: fnproject/python:3.8-dev
+run_image: fnproject/python:3.8
+entrypoint: /python/bin/fdk /function/func.py handler
