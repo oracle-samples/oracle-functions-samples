@@ -4,6 +4,9 @@ This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Go SDK](hhttps://docs.oracle.com/en-us/iaas/tools/go/46.1.0/).
 It creates an object in a bucket in Object Storage and returns a message with a status.
 
+Some OCI realms uses self signed certificates. Certificate being used can be specified in client we create
+in function to connect to OCI services. In this function, certificate to be trusted is specified in the client we are creating to interact with Object Storage. 
+
 The function calls the following OCI Go SDK classes:
 * [ResourcePrincipalConfigurationProvider](https://docs.oracle.com/en-us/iaas/tools/go/47.1.0/common/auth/index.html#ResourcePrincipalConfigurationProvider) to authenticate
 * [NewObjectStorageClientWithConfigurationProvider](https://docs.oracle.com/en-us/iaas/tools/go/47.1.0/objectstorage/index.html#NewObjectStorageClientWithConfigurationProvider) to interact with Object Storage
