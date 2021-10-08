@@ -5,7 +5,8 @@ API calls to OCI services using the [OCI Ruby SDK](https://docs.cloud.oracle.com
 It creates an object in a bucket in Object Storage and returns a message with a status.
 
 Some OCI realms uses self signed certificates. Certificate being used can be specified in client we create
-in function to connect to OCI services. In this function, certificate to be trusted is specified in the client we are creating to interact with Object Storage.
+in function to connect to OCI services. In this function, certificate to be trusted is specified in the 
+client we are creating to interact with Object Storage.
 
 The function calls the following OCI Ruby SDK classes:
 * [resource_principals_signer](https://docs.oracle.com/en-us/iaas/tools/ruby/2.14.0/OCI/Auth/Signers/ResourcePrincipalsFederationSigner.html) to authenticate
