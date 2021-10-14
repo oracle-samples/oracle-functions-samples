@@ -4,6 +4,10 @@ This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html).
 It creates an object in a bucket in Object Storage and returns a message with a status.
 
+Some OCI realms uses self signed certificates. Certificate being used can be specified in client we create
+in function to connect to OCI services. In this function, certificate to be trusted is specified in the
+client we are creating to interact with Object Storage.
+
 The function calls the following OCI Python SDK classes:
 * [Resource Principals Signer](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/signing.html#resource-principals-signer) to authenticate
 * [Object Storage Client](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/object_storage/client/oci.object_storage.ObjectStorageClient.html) to interact with Object Storage
