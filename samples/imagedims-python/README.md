@@ -58,38 +58,47 @@ The Dockerfile that "fn build" would automatically generate to build a
 Python 3.6 function container image looks like this:
 
 ```Dockerfile
-FROM fnproject/python:3.6-dev as build-stage
+FROM fnproject/python:3.6-dev
 WORKDIR /function
 ADD requirements.txt /function/
-RUN pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.txt &&\
-	rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
+RUN pip3 install --no-cache --no-cache-dir --upgrade pip && \
+      pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.txt && \
+	    rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv && \
+      chmod -R o+r /function
 ADD . /function/
 RUN rm -fr /function/.pip_cache
 
 FROM fnproject/python:3.6
+RUN microdnf install oracle-epel-release-el8 &&\
+      microdnf install ImageMagick &&\
+      microdnf remove oracle-epel-release-el8 &&\
+      microdnf clean all
 WORKDIR /function
 COPY --from=build-stage /function /function
 COPY --from=build-stage /python /python
-ENV PYTHONPATH=/python
+ENV PYTHONPATH=/python:/function
 ENTRYPOINT ["/python/bin/fdk", "/function/func.py", "handler"]
 ```
 
-It's a two stage build with the *fnproject/python:3.6-dev* image containing *pip* and
-other build tools, and the *fnproject/python:3.6* image containing just the Python
-runtime.  This approach is designed to ensure that deployable function container
+It's a two stage build with the first stage containing python with build tools
+and the second stage with only the python runtime and minimum required dependencies.
+This approach is designed to ensure that deployable function container
 images are as small as possible, which is beneficial for a number of reasons
 including the time it takes to transfer the image from a Docker respository to
 the compute node where the function is to be run.
 
-The *fnproject/python* container image is built on Debian so we'll need to install
+The *fnproject/python:3.6* container image needs ImageMagick from the EPEL repo, so we'll need to install
 the
-[ImageMagick Debian package](https://packages.debian.org/buster/imagemagick)
-using the *apt-get* package management utility.
+[ImageMagick package](https://yum.oracle.com/repo/OracleLinux/OL8/developer/EPEL/x86_64/index.html)
+using the *microdnf* package management utility.
 ```Dockerfile
-RUN apt-get update && apt-get install -y imagemagick
+RUN microdnf install oracle-epel-release-el8 &&\
+      microdnf install ImageMagick &&\
+      microdnf remove oracle-epel-release-el8 &&\
+      microdnf clean all
 ```
 We want to install ImageMagick into the runtime image, not the build image,
-so we need to add the *RUN* command after the *FROM fnproject/python:3.6* line.
+so we need to add line in the second stage.
 
 
 ## Deploy the function
