@@ -93,8 +93,8 @@ RUN microdnf install oracle-epel-release-el8 &&\
       microdnf remove oracle-epel-release-el8 &&\
       microdnf clean all
 ```
-We want to install ImageMagick into the runtime image, not the build image,
-so we need to add line in the second stage.
+We want to install ImageMagick into the runtime image, not the build image, so we need to 
+add the above lines in the second stage as shown in the merged [Dockerfile](./Dockerfile).
 
 
 ## Deploy the function
