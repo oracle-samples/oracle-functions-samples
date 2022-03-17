@@ -34,7 +34,8 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 
-## Using Functions with API Gateway
+## Functions and API Gateway
+[Oracle Cloud Functions](https://www.oracle.com/cloud-native/functions/) and [OCI API Gateway](https://www.oracle.com/api) together enable developers to create serverless APIs and perform function based authorization.
 | Description                                          | Python | Java | 
 |------------------------------------------------------|:------:|:----:|
 | API Gateway Function authorizer for IDCS             | |[sample](./samples/oci-apigw-authorizer-idcs-java) |
