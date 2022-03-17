@@ -31,8 +31,6 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
 | Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)
 | Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)|
-| Function that returns the API Gateway HTTP request information |[sample](./samples/oci-apigw-display-httprequest-info-python)
-| Function for API Gateway that validates an API key   |[sample](./samples/oci-apigw-apikey-validation-python)
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 
