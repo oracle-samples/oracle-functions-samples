@@ -31,12 +31,17 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
 | Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)
 | Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)|
-| API Gateway Function authorizer for IDCS             | |[sample](./samples/oci-apigw-authorizer-idcs-java)
-| Function that returns the API Gateway HTTP request information |[sample](./samples/oci-apigw-display-httprequest-info-python)
-| Function for API Gateway that validates an API key   |[sample](./samples/oci-apigw-apikey-validation-python)
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 
+## Functions and API Gateway
+[Oracle Cloud Functions](https://www.oracle.com/cloud-native/functions/) and [OCI API Gateway](https://www.oracle.com/api) together enable developers to create serverless APIs and perform function based authorization.
+| Description                                          | Python | Java | 
+|------------------------------------------------------|:------:|:----:|
+| API Gateway Function authorizer for IDCS             | |[sample](./samples/oci-apigw-authorizer-idcs-java) |
+| Function that returns the API Gateway HTTP request information for testing | [sample](./samples/oci-apigw-display-httprequest-info-python) | |
+| Validate an API key   |[sample](./samples/oci-apigw-apikey-validation-python) | |
+| BasicAuth Validation with IDCS | |[sample](./samples/oci-apigw-idcs-auth-basic) |
 
 
 ## Using Service Connector Hub with Functions
