@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: hello-dotnet
+version: 0.0.4
+runtime: dotnet3.1
+build_image: fnproject/dotnet:3.1-1.0.4-dev
+run_image: fnproject/dotnet:3.1-1.0.4
+cmd: Function:Greeter:greet
+entrypoint: dotnet HelloWorld.dll
