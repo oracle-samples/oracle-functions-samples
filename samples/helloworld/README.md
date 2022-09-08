@@ -105,6 +105,8 @@ fn -v deploy --app myapp
 
 #### Test
 
+![user input icon](./images/userinput.png)
+
 To invoke the Java `hello-java` function, run:
 ```
 fn invoke myapp hello-java
@@ -149,6 +151,8 @@ fn -v deploy --app myapp
 ```
 
 #### Test
+
+![user input icon](./images/userinput.png)
 
 To invoke the Dotnet `hello-dotnet` function, run:
 ```
