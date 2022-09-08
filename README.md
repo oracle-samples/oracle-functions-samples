@@ -13,10 +13,10 @@ This repository provides examples demonstrating how to use Oracle Functions.
 * [Notifications Service](./samples/basic-observability/notifications.md)
 
 ## How To
-| Description                                          | Python | Java | 
-|------------------------------------------------------|:------:|:----:|
-| Hello World                                          |[sample](./samples/helloworld)|[sample](./samples/helloworld)|
-| List OCI Compute instances                           |[sample](./samples/oci-list-instances-python)|[sample](./samples/oci-list-instances-java)|
+| Description                                          | Python | Java | Dotnet |
+|------------------------------------------------------|:------:|:----:|:----:|
+| Hello World                                          |[sample](./samples/helloworld)|[sample](./samples/helloworld)|[sample](./samples/helloworld)|
+| List OCI Compute instances                           |[sample](./samples/oci-list-instances-python)|[sample](./samples/oci-list-instances-java)|[sample](./samples/oci-list-instances-dotnet)|
 | Control OCI Compute instances (start/stop/status)    |[sample](./samples/oci-compute-control-python)|
 | List OCI compartments                                |[sample](./samples/oci-list-compartments-python)|
 | List objects in OCI Object Storage                   |[sample](./samples/oci-objectstorage-list-objects-python)|[sample](./samples/oci-objectstorage-list-objects-java)|
