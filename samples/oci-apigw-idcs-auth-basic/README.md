@@ -114,12 +114,12 @@ Review the following files in the current folder:
 
 The name of your function _basicauth_ is specified in [func.yaml](./func.yaml).
 
-set the following config variables to the values noted while configuring IDCS.
+set the following config variables to the values noted while configuring IDCS. The IDCS URL is the token endpoint that returns the access token after validating credentials
 
 ```
 CLIENT_ID = "xxxxxxxxxxx";
 CLIENT_SECRET = "xxxxxxxxx";
-IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com";
+IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com/oauth2/v1/token";
 
 //INFORMATION ABOUT THE TARGET APPLICATION
 SCOPE_AUD = "display-httprequest-infodisplay-httprequest-info";
@@ -128,7 +128,7 @@ SCOPE_AUD = "display-httprequest-infodisplay-httprequest-info";
 For the unit test to run, set the following variables in src/test/java/com/example/fn/BasicAuthTest.java
 
 ```
-    private static final String TEST_IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com";
+    private static final String TEST_IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com/oauth2/v1/token";
     private static final String TEST_CLIENT_ID = "xxxxxxxxxxx";
     private static final String TEST_CLIENT_SECRET = "xxxxxxxxxxx";
     private static final String TEST_SCOPE_AUD = "display-httprequest-infodisplay-httprequest-info";
