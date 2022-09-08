@@ -123,6 +123,50 @@ The `Hello, Bob!` output is displayed.
 Congratulations! You've just created, deployed, and invoked a Java HelloWorld function using Oracle Functions!
 
 
+### Dotnet
+
+#### Code
+
+The [Dotnet folder](./dotnet) contains the files to deploy the `hello-dotnet` function in Dotnet:
+* the code of the function, [HelloWorld.cs](./dotnet/HelloWorld.cs)
+* its dependencies, [HelloWorld.csproj](./dotnet/HelloWorld.csproj)
+* the function metadata, [func.yaml](./dotnet/func.yaml)
+
+
+#### Deploy
+
+![user input icon](./images/userinput.png)
+
+Change directory to *dotnet* and deploy the `hello-dotnet` function using:
+
+```
+fn -v deploy --app <app-name>
+```
+
+e.g.
+```
+fn -v deploy --app myapp
+```
+
+#### Test
+
+To invoke the Dotnet `hello-dotnet` function, run:
+```
+fn invoke myapp hello-dotnet
+```
+The Dotnet version displays `Hello, world!`
+
+
+
+To invoke the Dotnet function with a payload, run: 
+```
+echo -n "Bob" | fn invoke myapp hello-dotnet
+```
+The `Hello, Bob!` output is displayed.
+
+
+Congratulations! You've just created, deployed, and invoked a Dotnet HelloWorld function using Oracle Functions!
+
 
 ### Node, Golang, and Ruby
 
