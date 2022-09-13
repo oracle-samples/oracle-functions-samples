@@ -1,8 +1,8 @@
-# API Gateway Basicauth function using IDCS
+# API Gateway Basicauth function using Identity Cloud Service (IDCS)
 
 This function provides verification of username and password against IDCS at runtime and allows only authorized users to access API gateway deployment.
 
-The implementation conforms to the guidelines in the OCI Documentation at https://docs.cloud.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingauthorizerfunction.htm.
+The implementation conforms to the [documented guidlines for using authorizer functions to add Authentication and Authorization to API deployments](https://docs.cloud.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingauthorizerfunction.htm).
 
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
@@ -11,7 +11,7 @@ Whenever you see it, it's time for you to perform an action.
 
 [Create users in IDCS](https://docs.oracle.com/en/cloud/paas/identity-cloud/uaids/create-user-accounts.html)
 
-Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
+Before you deploy this sample function, you need to complete steps A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
 
 - A - Set up your tenancy
 - B - Create application
@@ -29,8 +29,8 @@ fn ls apps
 ## Deploy a function that implements an API
 
 We need another function that will be a target for API Gateway. We suggest [oci-display-httprequest-info-python](../oci-display-httprequest-info-python).
-In Cloud Shell, run the _fn deploy_ command to build the function and its dependencies as a Docker image,
-push the image to OCIR, and deploy the function to Oracle Functions in your application.
+In Cloud Shell, run `fn deploy` to build the function and its dependencies as a container,
+push the image to Oracle Cloud Infrastructure Registry (OCIR), and deploy the function to Oracle Functions in your application.
 
 ![user input icon](./images/userinput.png)
 
@@ -108,11 +108,11 @@ Note the _IDCS URL_, this is the URL you see in your browser URL bar, copy the I
 
 Review the following files in the current folder:
 
-- [pom.xml](./pom.xml) specifies all the dependencies for your function
-- [func.yaml](./func.yaml) that contains metadata about your function and declares properties
-- [src/main/java/com/example/fn/BasicAuth.java](./src/main/java/com/example/fn/BasicAuth.java) which contains the Java code
+- [`pom.xml`](./pom.xml) specifies all the dependencies for your function
+- [`func.yaml`](./func.yaml) that contains metadata about your function and declares properties
+- [`src/main/java/com/example/fn/BasicAuth.java`](./src/main/java/com/example/fn/BasicAuth.java) which contains the Java code
 
-The name of your function _basicauth_ is specified in [func.yaml](./func.yaml).
+The name of your function `basicauth` is specified in [`func.yaml`](./func.yaml).
 
 set the following config variables to the values noted while configuring IDCS. The IDCS URL is the token endpoint that returns the access token after validating credentials
 
@@ -127,7 +127,7 @@ SCOPE_AUD = "display-httprequest-infodisplay-httprequest-info";
 
 For the unit test to run, set the following variables in src/test/java/com/example/fn/BasicAuthTest.java
 
-```
+```java
     private static final String TEST_IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com/oauth2/v1/token";
     private static final String TEST_CLIENT_ID = "xxxxxxxxxxx";
     private static final String TEST_CLIENT_SECRET = "xxxxxxxxxxx";
@@ -137,22 +137,22 @@ For the unit test to run, set the following variables in src/test/java/com/examp
 
 ## Deploy the basicauth function
 
-In Cloud Shell, run the _fn deploy_ command to build the function and its dependencies as a Docker image,
+In Cloud Shell, run `fn deploy` to build the function and its dependencies as a container,
 push the image to OCIR, and deploy the function to Oracle Functions in your application.
 
 ![user input icon](./images/userinput.png)
 
-```
+```shell
 fn -v deploy --app <app-name>
 ```
 
 ## Invoke the basicauth function in cloud shell
 
-In Cloud Shell, run _fn invoke_ command to invoke the deployed function, returns active status as true if the token is valid or else returns false.
+In Cloud Shell, run `fn invoke` to invoke the deployed function. It should return an active status of true if the token is valid or otherwise returns false.
 
 ![user input icon](./images/userinput.png)
 
-```
+```shell
 echo -n '{"type":"TOKEN", "token":"Basic aW5jaGFyYS5zaGFtYW5uYUBvcmFj....."}' | fn invoke <app-name> <func-name>
 ```
 
@@ -194,9 +194,9 @@ The function validates if the user information is valid.
 
 ![user input icon](./images/userinput.png)
 
-Use the curl command to make the HTTP request
+Use `curl` to make the HTTP request
 
-```
+```shell
  curl -i -u "<username>:<password>" https://d6xxxxxxxxk64.apigateway.us-ashburn-1.oci.customer-oci.com/basicauth/hello
 ```
 
