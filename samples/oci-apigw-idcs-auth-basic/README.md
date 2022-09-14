@@ -116,7 +116,7 @@ The name of your function `basicauth` is specified in [`func.yaml`](./func.yaml)
 
 set the following config variables to the values noted while configuring IDCS. The IDCS URL is the token endpoint that returns the access token after validating credentials
 
-```
+```java
 CLIENT_ID = "xxxxxxxxxxx";
 CLIENT_SECRET = "xxxxxxxxx";
 IDCS_URL = "https://idcs-xxxxxxxx.identity.oraclecloud.com/oauth2/v1/token";
