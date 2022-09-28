@@ -79,7 +79,7 @@ echo '{"compartment_ocid":"<tenancy_ocid>"}' |fn invoke <app-name> <function-nam
 ```
 e.g.
 ```
-echo '{"compartment_ocid":"<tenancy_ocid>"}' | fn invoke myapp oci-list-compartments-python
+echo '{"compartment_ocid":"<tenancy_ocid>"}' | fn invoke myapp oci-list-compartments-dotnet
 ```
 You should see all the compartments in your tenancy listed in the terminal.
 
