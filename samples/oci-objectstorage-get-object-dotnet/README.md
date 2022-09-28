@@ -1,8 +1,8 @@
-# Function that lists objects from a bucket in Object Storage using the OCI Dotnet SDK
+# Function that retrieves an object from a bucket in Object Storage using the OCI Dotnet SDK
 
 This function uses Resource Principals to securely authorize a function to make
 API calls to OCI services using the [OCI Dotnet SDK](https://docs.oracle.com/en-us/iaas/tools/dotnet/latest/api/index.html).
-It returns a list of objects from a given bucket in Object Storage.
+It returns the content of an object from a bucket in Object Storage.
 
 The function calls the following OCI Dotnet SDK classes:
 * [Resource Principals](https://docs.oracle.com/en-us/iaas/tools/dotnet/latest/api/Oci.Common.Auth.ResourcePrincipalAuthenticationDetailsProvider.html) to authenticate
@@ -71,11 +71,11 @@ For more information on how to create policies, go [here](https://docs.cloud.ora
 
 Review the following files in the current folder:
 
-- [ListObjects.csproj](./ListObjects.csproj) specifies all the dependencies for your function
+- [GetObjects.csproj](./GetObjects.csproj) specifies all the dependencies for your function
 - [func.yaml](./func.yaml) that contains metadata about your function and declares properties
-- [ListObjects.cs](./ListObjects.cs) which is your actual Dotnet function
+- [GetObjects.cs](./GetObjects.cs) which is your actual Dotnet function
 
-The name of your function *oci-objectstorage-list-objects-dotnet* is specified in [func.yaml](./func.yaml).
+The name of your function *oci-objectstorage-get-object-dotnet* is specified in [func.yaml](./func.yaml).
 
 
 ## Deploy the function
@@ -103,10 +103,9 @@ echo -n <JSON-object> | fn invoke <app-name> <function-name>
 ```
 e.g.
 ```
-echo -n '{"bucketName": "<bucket-name>","namespaceName":"<bucket-namespace>"}' | fn invoke myapp oci-objectstorage-list-objects-dotnet
+echo -n '{"objectName": "<object-name>","bucketName": "<bucket-name>","namespaceName":"<bucket-namespace>", }' | fn invoke myapp oci-objectstorage-get-object-dotnet
 ```
-You should see a list of objects from the bucket in the terminal.
-
+You should see the contents of the object appear in the terminal.
 
 ## Monitoring Functions
 
