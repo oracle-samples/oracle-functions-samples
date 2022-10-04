@@ -22,7 +22,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | List objects in OCI Object Storage                   |[sample](./samples/oci-objectstorage-list-objects-python)|[sample](./samples/oci-objectstorage-list-objects-java)|[sample](./samples/oci-objectstorage-list-objects-dotnet)|
 | Read an object in OCI Object Storage                 |[sample](./samples/oci-objectstorage-get-object-python)|[sample](./samples/oci-objectstorage-get-object-java)|[sample](./samples/oci-objectstorage-get-object-dotnet)|
 | Create an object in OCI Object Storage               |[sample](./samples/oci-objectstorage-put-object-python)|[sample](./samples/oci-objectstorage-put-object-java)|[sample](./samples/oci-objectstorage-put-object-dotnet)|
-| Create a PAR in OCI Object Storage                   |[sample](./samples/oci-objectstorage-create-par-python)||
+| Create a PAR in OCI Object Storage                   |[sample](./samples/oci-objectstorage-create-par-python)||[sample](./samples/oci-objectstorage-create-par-dotnet)|
 | Copy object from one OCI Object Storage bucket to another |[sample](./samples/oci-objectstorage-copy-objects-python)||
 | Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)|
 | Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)|||
