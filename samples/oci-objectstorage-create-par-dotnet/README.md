@@ -61,7 +61,7 @@ fn -v deploy --app <app-name>
 
 
 ## Set the function configuration values
-The function requires the config value *bucket-name* and *lifetime* to be set.
+The function requires the config value *BUCKET_NAME* , *NAMESPACE* , *LIFETIME* and  *REGION* to be set.
 
 ![user input icon](./images/userinput.png)
 
