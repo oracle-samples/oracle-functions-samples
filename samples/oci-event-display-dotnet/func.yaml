@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: oci-event-display-dotnet
+version: 0.0.71
+runtime: dotnet3.1
+build_image: fnproject/dotnet:3.1-1.0.4-dev
+run_image: fnproject/dotnet:3.1-1.0.4
+cmd: LogEvents:Function:function_handler
+entrypoint: dotnet LogEvents.dll
