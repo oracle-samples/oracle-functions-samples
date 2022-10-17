@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+  <OutputType>Exe</OutputType>
+  <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <PackageReference Include="Fnproject.Fn.Fdk" Version="1.0.4" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="OCI.DotNetSDK.Common" Version="42.1.0" />
+    <PackageReference Include="OCI.DotNetSDK.Keymanagement" Version="42.1.0" />
+  </ItemGroup>
+
+</Project>
