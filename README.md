@@ -30,7 +30,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| 
 | Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
-| Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)
+| Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)||[sample](./samples/oci-vault-decrypt-dotnet)|
 | Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)||[sample](./samples/oci-vault-get-secret-dotnet)|
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
