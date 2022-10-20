@@ -26,7 +26,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Copy object from one OCI Object Storage bucket to another |[sample](./samples/oci-objectstorage-copy-objects-python)||[sample](./samples/oci-objectstorage-copy-objects-dotnet)|
 | Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)||[sample](./samples/oci-event-display-dotnet)|
 | Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)||[sample](./samples/oci-invoke-function-dotnet)|
-| Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) | 
+| Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) ||[sample](./samples/oci-adb-ords-runsql-dotnet)|
 | Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| 
 | Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
