@@ -29,7 +29,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) ||[sample](./samples/oci-adb-ords-runsql-dotnet)|
 | Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| [sample](./samples/oci-adb-client-runsql-dotnet)|
 | Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)||[sample](./samples/oci-ons-publish-dotnet)|
-| Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
+| Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)||[sample](./samples/oci-email-send-python)|
 | Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)||[sample](./samples/oci-vault-decrypt-dotnet)|
 | Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)||[sample](./samples/oci-vault-get-secret-dotnet)|
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
