@@ -27,8 +27,8 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)||[sample](./samples/oci-event-display-dotnet)|
 | Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)||[sample](./samples/oci-invoke-function-dotnet)|
 | Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) ||[sample](./samples/oci-adb-ords-runsql-dotnet)|
-| Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| [sample](./samples/oci-adb-client-runsql-dotnet)
-| Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
+| Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| [sample](./samples/oci-adb-client-runsql-dotnet)|
+| Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)||[sample](./samples/oci-ons-publish-dotnet)|
 | Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
 | Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)||[sample](./samples/oci-vault-decrypt-dotnet)|
 | Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)||[sample](./samples/oci-vault-get-secret-dotnet)|
