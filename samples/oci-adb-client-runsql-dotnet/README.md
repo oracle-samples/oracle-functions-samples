@@ -65,24 +65,10 @@ For more information, go to https://docs.cloud.oracle.com/iaas/Content/Database/
 
 
 ## Database Wallet and IAM Policies
-The Database wallet is not part of the Docker image because it is not secure. The function downloads the wallet while it is executed.
-The wallet can be retrieved from Object Storage or directly from Autonomous Database.
+The Database wallet is not part of the Docker image because it is not secure. The function downloads the wallet directly from Autonomous Database while it is executed.
 
 ![user input icon](./images/userinput.png)
 
-If you choose to retrieve the wallet from Object Storage, first download the wallet from Autonomous Database. Navigate to *Autonomous Transaction Processing* or *Autonomous Data Warehouse*, click on your database abd click on *DB Connection*. On the Pop-up window, click *Download Wallet*.
-
-![Download Wallet](./images/Download_wallet.png)
-
-Create a bucket in Object Storage and upload the wallet there. Note the name of the bucket and the wallet object name.
-Create an IAM policy that allows the dynamic group to read objects in the bucket. We will grant `read` access to `objects` in your bucket in the compartment.
-
-![user input icon](./images/userinput.png)
-
-Your policy should look something like this:
-```
-Allow dynamic-group <dynamic-group-name> to read objects in compartment <compartment-name> where target.bucket.name='<bucket-name>'
-```
 
 If you choose to retrieve the wallet from Autonomous Database directly during the execution of the function, note the OCID of the Autonomous Database and create an IAM policy that allows the dynamic group to use the autonomous Database with the specific permission 'AUTONOMOUS_DATABASE_CONTENT_READ'.
 ```
