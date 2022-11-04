@@ -30,7 +30,22 @@ payload to Splunk Observability format and posts the transformed payload to the
 Splunk Observability REST API.
 * Splunk ingests the metrics, building its own aggregations using the provided tagging.
 
-Let's drill down into the OCI Services involved.
+---
+## Deployment Order
+
+The OCI metrics Service Connector model is a fairly natural fit to the Splunk
+Observability streamin metrics platform so the deployment involes only a few
+points of coniguration. Nevertheless there is an order dependency to deployment:
+
+1. Get your environment right. You need accounts in Oracle Cloud and Splunk Observability. Trial accounts
+have all the features you need, so you can create trials if you prefer. Also, If you haven't used Functions in Oracle Cloud before the [Quick Start guide on OCI Functions](http://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm) previously mentioned is where you should start.
+2. Deploy the Function (required before you configure the Service Connector).
+Be sure to double check that your values for SPLUNK_O11Y_REALM and SPLUNK_O11Y_TOKEN
+in the Function Resources Configuration
+3. Create the Service Connector. Starting with a single namespace (`oci_vcn`)
+works well and once you see that work you can edit and add any namespaces you wish.
+
+With that order in mind, let's drill down into the OCI Services involved.
 
 ---
 ## Monitoring Service
@@ -123,16 +138,15 @@ Resulting Output:
     {
         "gauge": [
             {
-                "metric": "{name}",
-                "value": {datapoint.value}
+                "metric": "VnicFromNetworkBytes",
+                "value": 5780.0
                 "dimensions": {
-                    "oci_namespace" : "{namespace}",
-                    "oci_resource_group" : "{resourceGroup}" << if not null
-                    "oci_compartment_id" : "{compartmentId}",
-                    "oci_unit" : "{metadata.unit}",
-                    "oci_dim_<dimension_name>" : "<dimension_value>" <<= "{dimensions}"
+                    "oci_namespace" : "oci_vcn",
+                    "oci_compartment_id" : "ocid1.compartment.oc1...",
+                    "oci_unit" : "bytes",
+                    "oci_dim_resourceId" : "ocid1.vnic.oc1.phx..."
                 }
-                "timestamp": {datapoint.timestamp}
+                "timestamp": 1652196912000
             }
         ],
     }
@@ -163,7 +177,7 @@ pick up. Select your Application and the Function within it as the target.
 [<img src="images/sch-setup.png" width="800"/>](image.png)
 
 ---
-## View Metrics In DataDog
+## View Metrics In Splunk Observability
 
 When you have the Service Connector configured, metrics appear in Datadog's Metrics Explorer and notebooks
 after a few minutes. The following images show the Metrics Explorer and Notebook user interfaces in
@@ -183,24 +197,22 @@ Here are the supported Function parameters:
 
 | Environment Variable        | Default           | Purpose  |
 | ------------- |:-------------:| :----- |
-| DATADOG_METRICS_API_ENDPOINT      | not-configured | REST API endpoint for reaching DataDog ([see docs](https://docs.datadoghq.com/api/latest/metrics/#submit-metrics))|
-| DATADOG_API_TOKEN      | not-configured      |   API license token obtained from DataDog |
-| METRICS_TAG_KEYS | name, namespace, displayName, resourceDisplayName, unit      |  OCI Metric Dimensions and metadata to convert to DataDog Metric Tags |
+| SPLUNK_O11Y_REALM      | us0 | Realm which identifies REST API endpoint for reaching Splunk Observability ([see docs](https://dev.splunk.com/observability/reference/api/ingest_data/latest#endpoint-send-metrics))|
+| SPLUNK_O11Y_TOKEN      | not-configured      |   Ingest auth token obtained from Splunk Observability |
 | LOGGING_LEVEL | INFO     |    Controls function logging outputs.  Choices: INFO, WARN, CRITICAL, ERROR, DEBUG |
 | ENABLE_TRACING | False     |    Enables complete exception stack trace logging |
-| FORWARD_TO_DATADOG | True      |    Determines whether messages are forwarded to DataDog |
+| FORWARD_TO_SPLUNK | True      |    Determines whether messages are forwarded to Splunk |
 
 ---
 ## Conclusion
 
-You now have a low-maintenance, serverless function that can send raw metrics over to DataDog in
-near-real time. I encourage you to experiment with the dimensions and metadata tag mappings
-to see which combination works best for your use case.  
+You now have a low-maintenance, serverless function that can send raw metrics over to Splunk Observability in
+near-real time.  
 
 For more information, see the following resources:
 
-- [DataDog Metrics API Reference](https://docs.datadoghq.com/api/latest/metrics/)
-- [DataDog Metrics API / Submit Metrics API contract](https://docs.datadoghq.com/api/latest/metrics/#submit-metrics)
+- [Splunk Observability API Reference](https://dev.splunk.com/observability/reference)
+- [Splunk Observability Send Datapoints API](https://dev.splunk.com/observability/reference/api/ingest_data/latest#endpoint-send-metrics)
 
 ---
 ## **OCI** Related Workshops
