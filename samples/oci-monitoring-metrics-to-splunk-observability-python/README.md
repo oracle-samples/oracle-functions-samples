@@ -37,8 +37,9 @@ The OCI metrics Service Connector model is a fairly natural fit to the Splunk
 Observability streamin metrics platform so the deployment involes only a few
 points of coniguration. Nevertheless there is an order dependency to deployment:
 
-1. Get your environment right. You need accounts in Oracle Cloud and Splunk Observability. Trial accounts
-have all the features you need, so you can create trials if you prefer. Also, If you haven't used Functions in Oracle Cloud before the [Quick Start guide on OCI Functions](http://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm) previously mentioned is where you should start.
+1. Set up your environments. You need accounts in Oracle Cloud and Splunk Observability. Trial accounts
+have all the features you need, so you can create trials if you prefer. Also, as a reminder, If you
+haven't used Functions in Oracle Cloud before the [Quick Start guide on OCI Functions](http://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm) previously mentioned is where you should start.
 2. Deploy the Function (required before you configure the Service Connector).
 Be sure to double check that your values for SPLUNK_O11Y_REALM and SPLUNK_O11Y_TOKEN
 in the Function Resources Configuration
@@ -152,15 +153,6 @@ Resulting Output:
     }
 
 ---
-## Policy Setup
-
-You will need
-this [IAM policy](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionscreatingpolicies.htm#Create_Policies_to_Control_Access_to_Network_and_FunctionRelated_Resources)
-to authorize the Service Connector to invoke your Function.
-
-    allow any-user to use fn-function in compartment id ocid1.compartment.oc1... where all {request.principal.type=’serviceconnector’, request.principal.compartment.id=’ocid1.compartment.oc1...’}
-
----
 ## Service Connector Setup
 
 Now let’s set up a simple service connector instance that takes Monitoring sources and passes them to our Function.
@@ -176,19 +168,39 @@ pick up. Select your Application and the Function within it as the target.
 
 [<img src="images/sch-setup.png" width="800"/>](image.png)
 
+Finally, and *importantly*, Service Connector will need permissions to be able to
+read metrics from Monitoring and to be able to execute the Cloud Function you've created.
+When you are creating this Service Connector the configuration will offer to automatically
+create these policies for you. Do that. For reference here are examples of the policies
+created:
+
+Read Permission for metrics:
+
+```
+allow any-user to read metrics in tenancy where all {request.principal.type='serviceconnector', request.principal.compartment.id='ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon', target.compartment.id in ('ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon')}
+```
+
+Use and Invoke Permission for functions:
+
+```
+allow any-user to use fn-function in compartment id ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon where all {request.principal.type='serviceconnector', request.principal.compartment.id='ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon'}
+
+allow any-user to use fn-invocation in compartment id ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon where all {request.principal.type= 'serviceconnector', request.principal.compartment.id='ocid1.tenancy.oc1..abcdefghijkandsoonandsoforthandonandon'}
+```
+
 ---
 ## View Metrics In Splunk Observability
 
-When you have the Service Connector configured, metrics appear in Datadog's Metrics Explorer and notebooks
-after a few minutes. The following images show the Metrics Explorer and Notebook user interfaces in
-Datadog. Your VCN metrics are displayed.
+When you have the Service Connector configured, metrics appear in Splunk Observability's Finder
+after a few minutes. The following images show the Metrics Finder and Chart Builder interfaces in
+Splunk Observability. Your VCN metrics are displayed.
 
 
-[<img src="images/datadog1.png" width="800"/>](image.png)
+[<img src="images/o11y-metric-finder.png" width="800"/>](image.png)
 
 <br />
 
-[<img src="images/datadog2.png" width="800"/>](image.png)
+[<img src="images/o11y-chart.png" width="800"/>](image.png)
 
 ---
 ## Function Environment
