@@ -121,14 +121,17 @@ def get_metric_dimensions(log_record: dict):
 
     result['oci_namespace'] = get_dictionary_value(dictionary=log_record, target_key="namespace")
     result['oci_compartment_id'] = get_dictionary_value(dictionary=log_record, target_key="compartmentId")
-    result['oci_unit'] = get_dictionary_value(dictionary=log_record, target_key="unit")
+    unit = get_dictionary_value(dictionary=log_record, target_key="unit")
+    if unit is not None:
+        result['oci_unit'] = unit
     rg = get_dictionary_value(dictionary=log_record, target_key="resourceGroup")
     if rg is not None:
         result['oci_namespace'] = rg
 
     dim_dict = get_dictionary_value(dictionary=log_record, target_key="dimensions")
     for dim in dim_dict.items():
-        result[ fix_dimension_name('oci_dim_' + str(dim[0])) ] = fix_dimension_value( dim[1] )
+        if fix_dimension_value(dim[1]) is not None:
+            result[ fix_dimension_name('oci_dim_' + str(dim[0])) ] = fix_dimension_value( dim[1] )
 
     return result
 
@@ -136,13 +139,15 @@ def get_metric_dimensions(log_record: dict):
 def fix_dimension_name (name):
     nowhitespace = ((str(name).strip()).replace(' ',''))
     noleadunderscores = nowhitespace.lstrip('_')
-    nottoolong = noleadunderscores[:128]
+    noquotes = (noleadunderscores.replace('\"', '_')).replace('\'','_')
+    nottoolong = noquotes[:128]
     return nottoolong
 
 
 def fix_dimension_value (value):
     nowhitespace = (str(value)).strip()
-    nottoolong = nowhitespace[:256]
+    noquotes = (nowhitespace.replace('\"', '_')).replace('\'','_')
+    nottoolong = noquotes[:256]
     return nottoolong
 
 
@@ -166,7 +171,8 @@ def send_to_splunk_o11y (events):
         session.mount('https://', adapter)
 
         api_headers = {'Content-Type': 'application/json', 'X-SF-Token': api_token}
-        message_body = {'gauge' : events}
+        sorted_events = sorted(events, key=lambda dp: dp['timestamp'])
+        message_body = {'gauge' : sorted_events}
         logging.getLogger().debug("json to splunk observability: {}".format (json.dumps(message_body)))
         logging.getLogger().debug("headers to splunk observability: {}".format (json.dumps(api_headers)))
         post_url = 'https://ingest.%s.signalfx.com/v2/datapoint' % (api_realm)
