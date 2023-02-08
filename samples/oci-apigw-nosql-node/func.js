@@ -1,3 +1,7 @@
+// Copyright (c) 2023 Oracle, Inc.  All rights reserved.
+// Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+//
+
 const fdk=require('@fnproject/fdk');
 const process = require('process');
 const NoSQLClient = require('oracle-nosqldb').NoSQLClient;
