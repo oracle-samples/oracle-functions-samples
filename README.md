@@ -82,6 +82,10 @@ You can find the online documentation for Oracle Functions at [docs.oracle.com](
 
 See [CONTRIBUTING](./CONTRIBUTING.md)
 
+## Security
+
+Please consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process
+
 ## License
 
 See [LICENSE](./LICENSE.txt)
