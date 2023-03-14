@@ -1,0 +1,10 @@
+# Copyright (c) 2023 Oracle, Inc.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+#
+schema_version: 20180708
+name: oci-apigw-nosql-node
+version: 0.0.1
+runtime: node
+build_image: fnproject/node:14-dev
+run_image: fnproject/node:14
+entrypoint: node func.js
