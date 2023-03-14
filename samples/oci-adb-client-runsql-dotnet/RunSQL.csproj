@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+  <OutputType>Exe</OutputType>
+  <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <PackageReference Include="Fnproject.Fn.Fdk" Version="1.0.4" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.80" />
+    <PackageReference Include="OCI.DotNetSDK.Common" Version="42.1.0" />
+    <PackageReference Include="OCI.DotNetSDK.Database" Version="42.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+    <!-- <PackageReference Include="Oracle.ManagedDataAccess" Version="21.8.0" /> -->
+
+  </ItemGroup>
+
+</Project>

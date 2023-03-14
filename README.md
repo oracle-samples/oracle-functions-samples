@@ -13,25 +13,25 @@ This repository provides examples demonstrating how to use Oracle Functions.
 * [Notifications Service](./samples/basic-observability/notifications.md)
 
 ## How To
-| Description                                          | Python | Java | 
-|------------------------------------------------------|:------:|:----:|
-| Hello World                                          |[sample](./samples/helloworld)|[sample](./samples/helloworld)|
-| List OCI Compute instances                           |[sample](./samples/oci-list-instances-python)|[sample](./samples/oci-list-instances-java)|
-| Control OCI Compute instances (start/stop/status)    |[sample](./samples/oci-compute-control-python)|
-| List OCI compartments                                |[sample](./samples/oci-list-compartments-python)|
-| List objects in OCI Object Storage                   |[sample](./samples/oci-objectstorage-list-objects-python)|[sample](./samples/oci-objectstorage-list-objects-java)|
-| Read an object in OCI Object Storage                 |[sample](./samples/oci-objectstorage-get-object-python)|[sample](./samples/oci-objectstorage-get-object-java)|
-| Create an object in OCI Object Storage               |[sample](./samples/oci-objectstorage-put-object-python)|[sample](./samples/oci-objectstorage-put-object-java)|
-| Create a PAR in OCI Object Storage                   |[sample](./samples/oci-objectstorage-create-par-python)||
-| Copy object from one OCI Object Storage bucket to another |[sample](./samples/oci-objectstorage-copy-objects-python)||
-| Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)|
-| Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)|||
-| Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) | 
-| Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| 
-| Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)|
-| Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)|
-| Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)
-| Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)|
+| Description                                          | Python | Java | Dotnet |
+|------------------------------------------------------|:------:|:----:|:----:|
+| Hello World                                          |[sample](./samples/helloworld)|[sample](./samples/helloworld)|[sample](./samples/helloworld)|
+| List OCI Compute instances                           |[sample](./samples/oci-list-instances-python)|[sample](./samples/oci-list-instances-java)|[sample](./samples/oci-list-instances-dotnet)|
+| Control OCI Compute instances (start/stop/status)    |[sample](./samples/oci-compute-control-python)||[sample](./samples/oci-compute-control-dotnet)|
+| List OCI compartments                                |[sample](./samples/oci-list-compartments-python)||[sample](./samples/oci-list-compartments-dotnet)|
+| List objects in OCI Object Storage                   |[sample](./samples/oci-objectstorage-list-objects-python)|[sample](./samples/oci-objectstorage-list-objects-java)|[sample](./samples/oci-objectstorage-list-objects-dotnet)|
+| Read an object in OCI Object Storage                 |[sample](./samples/oci-objectstorage-get-object-python)|[sample](./samples/oci-objectstorage-get-object-java)|[sample](./samples/oci-objectstorage-get-object-dotnet)|
+| Create an object in OCI Object Storage               |[sample](./samples/oci-objectstorage-put-object-python)|[sample](./samples/oci-objectstorage-put-object-java)|[sample](./samples/oci-objectstorage-put-object-dotnet)|
+| Create a PAR in OCI Object Storage                   |[sample](./samples/oci-objectstorage-create-par-python)||[sample](./samples/oci-objectstorage-create-par-dotnet)|
+| Copy object from one OCI Object Storage bucket to another |[sample](./samples/oci-objectstorage-copy-objects-python)||[sample](./samples/oci-objectstorage-copy-objects-dotnet)|
+| Display an OCI Cloud Event                           |[sample](./samples/oci-event-display-python)||[sample](./samples/oci-event-display-dotnet)|
+| Invoke another Function using the OCI SDK            |[sample](./samples/oci-invoke-function-python)||[sample](./samples/oci-invoke-function-dotnet)|
+| Run a SQL statement against Autonomous DB using ORDS | [sample](./samples/oci-adb-ords-runsql-python) ||[sample](./samples/oci-adb-ords-runsql-dotnet)|
+| Run a SQL statement against Autonomous DB using DB Client |[sample](./samples/oci-adb-client-runsql-python)|| [sample](./samples/oci-adb-client-runsql-dotnet)|
+| Publish a notification using ONS                     |[sample](./samples/oci-ons-publish-python)||[sample](./samples/oci-ons-publish-dotnet)|
+| Send an email using Email Delivery Service           |[sample](./samples/oci-email-send-python)||[sample](./samples/oci-email-send-dotnet)|
+| Decrypt cipher using Vault keys                      |[sample](./samples/oci-vault-decrypt-python)||[sample](./samples/oci-vault-decrypt-dotnet)|
+| Get a secret from Vault                              |[sample](./samples/oci-vault-get-secret-python)||[sample](./samples/oci-vault-get-secret-dotnet)|
 | Write IAM policies that enables Functions in a tenancy to access resources in other tenancies ||[sample](./samples/oci-cross-tenancy-policies-java)
 | Trace a function with APM and add custom child spans using Zipkin |[sample](./samples/trace-functions-with-apm)|
 

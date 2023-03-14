@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: oci-adb-ords-runsql-dotnet
+version: 0.0.183
+runtime: dotnet3.1
+build_image: fnproject/dotnet:3.1-1.0.4-dev
+run_image: fnproject/dotnet:3.1-1.0.4
+cmd: RunSQL:Function:function_handler
+entrypoint: dotnet RunSQL.dll

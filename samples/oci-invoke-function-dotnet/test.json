@@ -1,0 +1,5 @@
+{
+  "function_ocid": "ocid1.fnfunc.oc1.ap-osaka-1.aaaaaaaa..",
+  "function_endpoint": "https://xxxxxx.ap-osaka-1.functions.oci.oraclecloud.com/xxxxx/actions/invoke",
+  "function_body": ""
+}
