@@ -1,0 +1,225 @@
+[
+  {
+    "data": {
+      "additionalDetails": {
+        "X-Real-Port": 19991
+      },
+      "availabilityDomain": "AD3",
+      "compartmentId": "ocid1.compartment.oc1..xxx",
+      "compartmentName": "Network",
+      "definedTags": null,
+      "eventGroupingId": "/xxx",
+      "eventName": "ListPrivateIps",
+      "freeformTags": null,
+      "identity": {
+        "authType": "instance",
+        "callerId": null,
+        "callerName": null,
+        "consoleSessionId": null,
+        "credentials": null,
+        "ipAddress": "xx.xx.xx.xx",
+        "principalId": "ocid1.instance.oc1.iad.xxx",
+        "principalName": null,
+        "tenantId": "ocid1.tenancy.oc1..xxx",
+        "userAgent": null
+      },
+      "message": "ListPrivateIps succeeded",
+      "request": {
+        "action": "GET",
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Authorization": [
+            "Bearer yyy.zzz.rpVTVki1Fo-aaa"
+          ],
+          "Date": [
+            "Fri, 17 Mar 2023 12:57:44 GMT"
+          ]
+        },
+        "id": "/xxx/3ABE1F95B35432E3683550035916DA4D",
+        "parameters": {
+          "vnicId": [
+            "ocid1.vnic.oc1.iad.xxx"
+          ]
+        },
+        "path": "/20160918/privateIps"
+      },
+      "resourceId": null,
+      "response": {
+        "headers": {
+          "Connection": [
+            "close"
+          ],
+          "Content-Length": [
+            "1446"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Fri, 17 Mar 2023 12:57:44 GMT"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "opc-request-id": [
+            "/xx/yy"
+          ]
+        },
+        "message": null,
+        "payload": {},
+        "responseTime": "2023-03-17T12:57:44.914Z",
+        "status": "200"
+      },
+      "stateChange": {
+        "current": null,
+        "previous": null
+      }
+    },
+    "dataschema": "2.0",
+    "id": "45f1403b-8909-40df-aa69-769f867a30df",
+    "oracle": {
+      "compartmentid": "ocid1.compartment.oc1..xx",
+      "ingestedtime": "2023-03-17T12:57:45.842Z",
+      "loggroupid": "_Audit",
+      "tenantid": "ocid1.tenancy.oc1..xx"
+    },
+    "source": "",
+    "specversion": "1.0",
+    "time": "2023-03-17T12:57:44.914Z",
+    "type": "com.oraclecloud.virtualNetwork.ListPrivateIps"
+  },
+  {
+    "data": {
+      "additionalDetails": {
+        "X-Real-Port": 52346
+      },
+      "availabilityDomain": "AD3",
+      "compartmentId": "ocid1.compartment.oc1..xx",
+      "compartmentName": "Network",
+      "definedTags": null,
+      "eventGroupingId": "sch-7v3vazqt2ohujqmxuizhbg7dfcq/xx",
+      "eventName": "UploadOCSFile",
+      "freeformTags": null,
+      "identity": {
+        "authType": "resource",
+        "callerId": null,
+        "callerName": null,
+        "consoleSessionId": null,
+        "credentials": "***",
+        "ipAddress": "10.1.8.240",
+        "principalId": "ocid1.serviceconnector.oc1.iad.xx",
+        "principalName": null,
+        "tenantId": "ocid1.tenancy.oc1..xx",
+        "userAgent": "Oracle-JavaSDK/2.46.0 (Linux/4.14.35-2047.521.4.el7uek.x86_64; Java/1.8.0_311; Java HotSpot(TM) 64-Bit Server VM GraalVM EE 20.3.4/25.311-b11-jvmci-20.3-b24)"
+      },
+      "message": "UploadOCSFile succeeded",
+      "request": {
+        "action": "POST",
+        "headers": {
+          "Accept": [
+            "application/json"
+          ],
+          "Authorization": [
+            "Signature ***"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "10452526"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Fri, 17 Mar 2023 12:57:42 GMT"
+          ],
+          "User-Agent": [
+            "Oracle-JavaSDK/2.46.0 (Linux/4.14.35-2047.521.4.el7uek.x86_64; Java/1.8.0_311; Java HotSpot(TM) 64-Bit Server VM GraalVM EE 20.3.4/25.311-b11-jvmci-20.3-b24)"
+          ],
+          "opc-client-info": [
+            "Oracle-JavaSDK/2.46.0"
+          ],
+          "opc-request-id": [
+            "sch-7v3vazqt2oujqmxuiwzhbg7dfcq"
+          ],
+          "opc-retry-token": [
+            "69ab78a0-82a6-4ab-8f63-6c83c775e194"
+          ],
+          "x-content-sha256": [
+            "NwJ8bFtpyzoEg3lKe8yGsRHkMEkrV7P2UFqowRds8U="
+          ]
+        },
+        "id": "sch-7v3vazqt2ohujqmxuiwzhbg7dfcq/yy/zz",
+        "parameters": {
+          "logGroupId": [
+            "ocid1.loganalyticsloggroup.oc1.iad.xx"
+          ],
+          "serviceConnectorCompartmentId": [
+            "ocid1.compartment.oc1..xx"
+          ],
+          "serviceConnectorId": [
+            "ocid1.serviceconnector.oc1.iad.xx"
+          ],
+          "serviceConnectorSource": [
+            "LOG"
+          ],
+          "serviceConnectorSourceId": [
+            "null"
+          ]
+        },
+        "path": "/20200601/actions/uploadOCSFile"
+      },
+      "resourceId": "uploadOCSFile",
+      "response": {
+        "headers": {
+          "Content-Length": [
+            "48"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Fri, 17 Mar 2023 12:57:42 GMT"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "opc-content-md5": [
+            "b8ymx7ezMarR/7wFJq/rNg=="
+          ],
+          "opc-object-id": [
+            "8a04e7ec-95b1-4a30-8e4f-76506f1ce3cc"
+          ],
+          "opc-request-id": [
+            "sch-xx/xx/yy"
+          ]
+        },
+        "message": null,
+        "payload": {},
+        "responseTime": "2023-03-17T12:57:43.674Z",
+        "status": "200"
+      },
+      "stateChange": {
+        "current": {
+          "timeCreated": "2023-03-17T12:57:43.000Z"
+        },
+        "previous": {}
+      }
+    },
+    "dataschema": "2.0",
+    "id": "82bc9a7c-876c-424b-b732-a6c19ca73dc9",
+    "oracle": {
+      "compartmentid": "ocid1.compartment.oc1..xx",
+      "ingestedtime": "2023-03-17T12:57:53.467Z",
+      "loggroupid": "_Audit",
+      "tenantid": "ocid1.tenancy.oc1..xx"
+    },
+    "source": "",
+    "specversion": "1.0",
+    "time": "2023-03-17T12:57:43.674Z",
+    "type": "com.oraclecloud.LoggingAnalytics.UploadOCSFile"
+  }
+]

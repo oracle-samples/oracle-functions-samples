@@ -1,0 +1,44 @@
+{
+    "eventType": "com.oraclecloud.cloudguard.problemdetected",
+    "cloudEventsVersion": "0.1",
+    "eventTypeVersion": "2.0",
+    "source": "CloudGuardResponderEngine",
+    "eventTime": "2023-03-21T22:23:22Z",
+    "contentType": "application/json",
+    "data": {
+        "compartmentId": "ocid1.compartment.oc1..xx",
+        "compartmentName": "CIS235-appdev-cmp",
+        "resourceName": "Instance terminated",
+        "resourceId": "ocid1.cloudguardproblem.oc1.iad.xx",
+        "additionalDetails": {
+            "tenantId": "ocid1.tenancy.oc1..xx",
+            "status": "OPEN",
+            "reason": "New Problem detected by CloudGuard",
+            "problemName": "INSTANCE_TERMINATED",
+            "riskLevel": "HIGH",
+            "problemType": "ACTIVITY",
+            "resourceName": "a@A.com",
+            "resourceId": "ocid1.saml2idp.oc1..xx/a@a.com",
+            "resourceType": "User",
+            "targetId": "ocid1.cloudguardtarget.oc1.iad.xx",
+            "labels": "Compute",
+            "firstDetected": "2023-03-21T22:22:41.812Z",
+            "lastDetected": "2023-03-21T22:22:41.812Z",
+            "region": "us-ashburn-1",
+            "impactedResourceName": "wls-ucm8",
+            "impactedResourceId": "ocid1.instance.oc1.iad.xx",
+            "impactedResourceType": "Instance",
+            "problemAdditionalDetails": {
+                "imageId": "ocid1.image.oc1..xx",
+                "shape": "VM.Standard.E4.Flex",
+                "type": "CustomerVmi"
+            },
+            "problemDescription": "Compute instances may deliver critical functions. ",
+            "problemRecommendation": "Ensure that the termination of the compute instance is sanctioned and performed by a permitted administrator."
+        }
+    },
+    "eventID": "7c9615da-209d-4cd5-96b1-c11354709cc3",
+    "extensions": {
+        "compartmentId": "ocid1.compartment.oc1..xx"
+    }
+}
