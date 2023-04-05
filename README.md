@@ -51,6 +51,7 @@ This repository provides examples demonstrating how to use Oracle Functions.
 | _**Logging >> Service Connector Hub >> Functions**_ | |
 | Move logs from OCI to Datadog using Service Connector Hub, Logging (Source), Functions (Target) and Datadog | [sample](./samples/oci-logs-datadog) |
 | Send SMS messages for logs using Service Connector Hub, Logging (Source), Functions (Target) and Syniverse SMS | [sample](./samples/oci-notification-syniverse) |
+| Move Audit, Logs, and Events from OCI to SumoLogic using Service Connector Hub, Logging (Source), Functions (Target) and HTTPS | [sample](./samples/oci-serviceconnector-sumologic-python/) |
 | | |
 | _**Streaming >> Service Connector Hub >> Functions**_ | |
 | Convert JSON to CSV format using Service Connector Hub, Streams (Source and Target) and Functions (Task) | [sample](./samples/oci-serviceconnector-streaming-json-to-csv-python) |
