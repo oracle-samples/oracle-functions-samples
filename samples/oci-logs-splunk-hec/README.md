@@ -40,14 +40,6 @@ on your Splunk Instance. Instructions on configuring and using the HEC are
 available at https://docs.splunk.com/Documentation/Splunk/9.0.1/Data/UsetheHTTPEventCollector.
 
 
-### Splunk Observability
-
-For Splunk Observability Cloud, you will need to set up an access token of type `Ingest` as
-detailed at https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html.
-The HEC Endpoint for Splunk Observability Cloud is `https://ingest.<REALM>.signalfx.com/v1/log`
-where `<REALM>` identifies the region where your account is hosted (e.g. `us0`, `us1`, `eu0`).
-
-
 ## Deploy the function
 
 In Cloud Shell, run the `fn deploy` command to build *this* function and its dependencies as a Docker image,
@@ -97,7 +89,7 @@ Here are the supported Function parameters:
 
 | Environment Variable        | Default           | Purpose  |
 | ------------- |:-------------:| :----- |
-| SPLUNK_HEC_ENDPOINT'      | not-configured | REST API endpoint for reaching Splunk HEC ([see docs](https://docs.splunk.com/Documentation/Splunk/9.2.0/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Cloud_Platform))|
+| SPLUNK_HEC_ENDPOINT      | not-configured | REST API endpoint for reaching Splunk HEC ([see docs](https://docs.splunk.com/Documentation/Splunk/9.2.0/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Cloud_Platform))|
 | SPLUNK_HEC_TOKEN      	| not-configured      |   HEC authentication token obtained from Splunk HEC configuration |
 | LOGGING_LEVEL | INFO     |    Controls function logging outputs.  Choices: INFO, WARN, CRITICAL, ERROR, DEBUG |
 
