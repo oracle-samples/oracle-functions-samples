@@ -4,9 +4,6 @@ Forward logs from Oracle Cloud Infrastructure Logging service to Splunk via
 HTTP Event Connector
 
 
-![workflow](./images/workflow.png)
-
-
 ## Prerequisites
 
 Before you deploy this sample function, make sure you have run steps A, B
