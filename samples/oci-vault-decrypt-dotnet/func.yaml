@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: oci-vault-decrypt-dotnet
+version: 0.0.90
+runtime: dotnet3.1
+build_image: fnproject/dotnet:3.1-1.0.4-dev
+run_image: fnproject/dotnet:3.1-1.0.4
+cmd: VaultDecrypt:Function:function_handler
+entrypoint: dotnet VaultDecrypt.dll
