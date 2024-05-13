@@ -1,0 +1,9 @@
+schema_version: 20180708
+name: api-gw
+version: 1.0.26
+runtime: python
+build_image: fnproject/python:3.9-dev
+run_image: fnproject/python:3.9
+entrypoint: /python/bin/fdk /function/func.py handler
+memory: 256
+timeout: 40
