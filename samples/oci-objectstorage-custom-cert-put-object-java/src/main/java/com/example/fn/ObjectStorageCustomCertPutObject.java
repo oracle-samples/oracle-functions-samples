@@ -28,9 +28,11 @@ import java.io.InputStream;
 import java.io.DataInputStream;
 import java.security.cert.Certificate;
 import java.util.Collection;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class ObjectStorageCustomCertPutObject {
 
+    static String keyStorePassword = RandomStringUtils.randomAlphanumeric(10);
     private ObjectStorage objStoreClient = null;
     final ResourcePrincipalAuthenticationDetailsProvider provider
             = ResourcePrincipalAuthenticationDetailsProvider.builder().build();
@@ -73,7 +75,7 @@ public class ObjectStorageCustomCertPutObject {
             }
 
             FileOutputStream fos = new FileOutputStream(trustStorePath);
-            ks.store(fos,"changeit".toCharArray());
+            ks.store(fos, keyStorePassword.toCharArray());
         }
     }
 
